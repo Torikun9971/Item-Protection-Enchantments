@@ -1,7 +1,5 @@
 # Item Protection Enchantments
 
-- ---
-
 ## Features
 
 A mod that adds enchantments to protect items.
