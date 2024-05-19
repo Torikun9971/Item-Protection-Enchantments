@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface EnchantableBlock {
     void setEnchantments(@Nullable Map<Enchantment, Integer> enchantments);
+
     Map<Enchantment, Integer> getEnchantments();
+
     ListTag getEnchantmentTag();
 }

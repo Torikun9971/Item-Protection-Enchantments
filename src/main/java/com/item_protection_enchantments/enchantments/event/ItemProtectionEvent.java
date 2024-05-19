@@ -44,10 +44,10 @@ public class ItemProtectionEvent {
 
     @SubscribeEvent
     public void voidEnchantmentEvent(TickEvent.ServerTickEvent event) {
-        ITEM_ENTITIES.stream().filter((itemEntity) -> itemEntity.getY() < itemEntity.level().getMinBuildHeight()).filter((itemEntity) -> ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.VOID_PROTECTION_ITEM.get())).forEach((itemEntity) -> {
+        ITEM_ENTITIES.stream().filter((itemEntity) -> itemEntity.getY() < itemEntity.getLevel() .getMinBuildHeight()).filter((itemEntity) -> ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.VOID_PROTECTION_ITEM.get())).forEach((itemEntity) -> {
             itemEntity.setNoGravity(true);
             itemEntity.setInvulnerable(true);
-            itemEntity.setPos(itemEntity.getX(), itemEntity.level().getMinBuildHeight() + 1, itemEntity.getZ());
+            itemEntity.setPos(itemEntity.getX(), itemEntity.getLevel().getMinBuildHeight() + 1, itemEntity.getZ());
             itemEntity.setDeltaMovement(0, 0, 0);
             itemEntity.setGlowingTag(ModConfiguration.VOID_PROTECTION_GLOWING_TAG.get());
         });

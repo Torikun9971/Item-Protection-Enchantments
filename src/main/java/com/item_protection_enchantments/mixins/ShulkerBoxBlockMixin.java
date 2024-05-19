@@ -27,7 +27,7 @@ public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
     @Nullable
     public abstract DyeColor getColor();
 
-    public ShulkerBoxBlockMixin(Properties properties) {
+    public ShulkerBoxBlockMixin(@Nullable DyeColor color, Properties properties) {
         super(properties);
     }
 
