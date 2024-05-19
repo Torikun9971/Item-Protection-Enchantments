@@ -8,7 +8,6 @@ import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
@@ -23,23 +22,15 @@ import java.util.Map;
 
 @Mixin(ShulkerBoxBlockEntity.class)
 public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBlockEntity implements WorldlyContainer, EnchantableBlock {
-    @Shadow
-    @Final
-    @Mutable
-    @Nullable
-    private DyeColor color;
-
     @Unique
     protected ListTag protection_enchantments$enchantmentTag = new ListTag();
 
-    public ShulkerBoxBlockEntityMixin(@Nullable DyeColor p_155666_, BlockPos p_155667_, BlockState p_155668_) {
-        super(BlockEntityType.SHULKER_BOX, p_155667_, p_155668_);
-        this.color = p_155666_;
+    public ShulkerBoxBlockEntityMixin(@Nullable DyeColor color, BlockPos pos, BlockState state) {
+        super(BlockEntityType.SHULKER_BOX, pos, state);
     }
 
-    public ShulkerBoxBlockEntityMixin(BlockPos p_155670_, BlockState p_155671_) {
-        super(BlockEntityType.SHULKER_BOX, p_155670_, p_155671_);
-        this.color = ShulkerBoxBlock.getColorFromBlock(p_155671_.getBlock());
+    public ShulkerBoxBlockEntityMixin(BlockPos pos, BlockState state) {
+        super(BlockEntityType.SHULKER_BOX, pos, state);
     }
 
     @Inject(method = "saveAdditional", at = @At("TAIL"))
