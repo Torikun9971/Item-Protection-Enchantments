@@ -8,6 +8,7 @@
     "AbstractFireBlockMixin",
     "CactusBlockMixin",
     "EntityMixin",
+    "ItemEntityMixin",
     "ShulkerBoxBlockMixin",
     "ShulkerBoxTileEntityMixin"
   ],
