@@ -6,6 +6,7 @@ import com.item_protection_enchantments.init.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,7 +50,7 @@ public class ItemProtectionEnchantments {
     }
 
     public static boolean hasEnchantment(ItemStack itemStack, boolean mustHaveAll, Enchantment... enchantments) {
-        Map<Enchantment, Integer> enchantmentsMap = itemStack.getAllEnchantments();
+        Map<Enchantment, Integer> enchantmentsMap = EnchantmentHelper.getEnchantments(itemStack);
 
         for (Enchantment enchantment : enchantments) {
             if (mustHaveAll) {

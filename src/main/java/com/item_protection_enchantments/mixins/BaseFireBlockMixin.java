@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BaseFireBlock.class)
 public abstract class BaseFireBlockMixin extends Block {
-    public BaseFireBlockMixin(Properties properties, float fireDamage) {
+    public BaseFireBlockMixin(Properties properties) {
         super(properties);
     }
 

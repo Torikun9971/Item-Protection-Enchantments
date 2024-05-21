@@ -7,6 +7,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
@@ -27,14 +28,15 @@ public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
     @Nullable
     public abstract DyeColor getColor();
 
-    public ShulkerBoxBlockMixin(@Nullable DyeColor color, Properties properties) {
+    public ShulkerBoxBlockMixin(Properties properties) {
         super(properties);
     }
 
     @Inject(method = "playerWillDestroy", at = @At("HEAD"), cancellable = true)
     public void protection_enchantments$playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player, CallbackInfo ci) {
         BlockEntity blockentity = level.getBlockEntity(pos);
-        if (blockentity instanceof ShulkerBoxBlockEntity shulkerboxblockentity) {
+        if (blockentity instanceof ShulkerBoxBlockEntity) {
+            ShulkerBoxBlockEntity shulkerboxblockentity = (ShulkerBoxBlockEntity)blockentity;
             if (!level.isClientSide && player.isCreative() && !shulkerboxblockentity.isEmpty()) {
                 ItemStack itemstack = ShulkerBoxBlock.getColoredItemStack(this.getColor());
                 blockentity.saveToItem(itemstack);
@@ -65,7 +67,7 @@ public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
         BlockEntity blockentity = level.getBlockEntity(pos);
 
         if (blockentity instanceof EnchantableBlock enchantableBlock) {
-            enchantableBlock.setEnchantments(stack.getAllEnchantments());
+            enchantableBlock.setEnchantments(EnchantmentHelper.getEnchantments(stack));
         }
     }
 }

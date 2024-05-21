@@ -4,8 +4,6 @@ import com.item_protection_enchantments.blockentities.EnchantableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,13 +19,9 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 @Mixin(ShulkerBoxBlockEntity.class)
-public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBlockEntity implements WorldlyContainer, EnchantableBlock {
+public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBlockEntity implements EnchantableBlock {
     @Unique
     protected ListTag protection_enchantments$enchantmentTag = new ListTag();
-
-    public ShulkerBoxBlockEntityMixin(@Nullable DyeColor color, BlockPos pos, BlockState state) {
-        super(BlockEntityType.SHULKER_BOX, pos, state);
-    }
 
     public ShulkerBoxBlockEntityMixin(BlockPos pos, BlockState state) {
         super(BlockEntityType.SHULKER_BOX, pos, state);
