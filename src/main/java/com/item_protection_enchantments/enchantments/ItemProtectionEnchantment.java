@@ -1,12 +1,13 @@
 package com.item_protection_enchantments.enchantments;
 
 import com.item_protection_enchantments.config.ModConfiguration;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.*;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.util.function.Predicate;
@@ -16,7 +17,7 @@ public class ItemProtectionEnchantment extends Enchantment {
     public static final int MAX_COST = 50;
 
     public ItemProtectionEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentCategories.ALL_ITEMS.getEnchantmentCategory(), EquipmentSlot.values());
+        super(Rarity.VERY_RARE, EnchantmentTypes.ALL_ITEMS.getEnchantmentCategory(), EquipmentSlotType.values());
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ItemProtectionEnchantment extends Enchantment {
         return false;
     }
 
-    public enum EnchantmentCategories {
+    public enum EnchantmentTypes {
         ALL_ITEMS("all_items", (item) -> item instanceof Item),
 
         ITEMS_AND_COMPATIBLE_BLOCKS("items_and_compatible_blocks", (item) -> {
@@ -52,7 +53,9 @@ public class ItemProtectionEnchantment extends Enchantment {
                 return true;
             }
 
-            if (item instanceof BlockItem blockItem) {
+            if (item instanceof BlockItem) {
+                BlockItem blockItem = (BlockItem) item;
+
                 if (blockItem.getBlock() instanceof ShulkerBoxBlock) {
                     return true;
                 }
@@ -62,19 +65,19 @@ public class ItemProtectionEnchantment extends Enchantment {
         });
 
         private final Predicate<Item> predicate;
-        private final EnchantmentCategory category;
+        private final EnchantmentType type;
 
-        EnchantmentCategories(String name, Predicate<Item> predicate) {
+        EnchantmentTypes(String name, Predicate<Item> predicate) {
             this.predicate = predicate;
-            this.category = EnchantmentCategory.create(name, predicate);
+            this.type = EnchantmentType.create(name, predicate);
         }
 
         public Predicate<Item> getPredicate() {
             return predicate;
         }
 
-        public EnchantmentCategory getEnchantmentCategory() {
-            return category;
+        public EnchantmentType getEnchantmentCategory() {
+            return type;
         }
     }
 }

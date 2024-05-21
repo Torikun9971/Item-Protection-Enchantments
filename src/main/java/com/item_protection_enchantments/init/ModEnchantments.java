@@ -2,10 +2,10 @@ package com.item_protection_enchantments.init;
 
 import com.item_protection_enchantments.ItemProtectionEnchantments;
 import com.item_protection_enchantments.enchantments.*;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ItemProtectionEnchantments.MOD_ID);

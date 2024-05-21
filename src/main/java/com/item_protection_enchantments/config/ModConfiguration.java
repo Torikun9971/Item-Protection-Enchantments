@@ -1,13 +1,13 @@
 package com.item_protection_enchantments.config;
 
 import com.item_protection_enchantments.enchantments.ItemProtectionEnchantment;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ModConfiguration {
     public static final ForgeConfigSpec COMMON_CONFIG;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentCategories> ENCHANTABLE_ITEMS;
+    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentTypes> ENCHANTABLE_ITEMS;
 
     public static final ForgeConfigSpec.IntValue FIRE_PROTECTION_MIN_COST;
     public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> FIRE_PROTECTION_RARITY;
@@ -31,7 +31,7 @@ public class ModConfiguration {
         COMMON_CONFIG_BUILDER.comment("Game Settings\n");
 
         ENCHANTABLE_ITEMS = COMMON_CONFIG_BUILDER.comment("Items that can be enchanted")
-                .defineEnum("enchantableItems", ItemProtectionEnchantment.EnchantmentCategories.ITEMS_AND_COMPATIBLE_BLOCKS);
+                .defineEnum("enchantableItems", ItemProtectionEnchantment.EnchantmentTypes.ITEMS_AND_COMPATIBLE_BLOCKS);
 
         COMMON_CONFIG_BUILDER.push("Fire Protection Enchantment");
 

@@ -1,15 +1,25 @@
 package com.item_protection_enchantments.init;
 
 import com.item_protection_enchantments.ItemProtectionEnchantments;
-import com.item_protection_enchantments.lootfunctiontypes.CopyEnchantmentFunction;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import com.item_protection_enchantments.lootfunctiontypes.CopyEnchantment;
+import net.minecraft.loot.ILootSerializer;
+import net.minecraft.loot.LootFunctionType;
+import net.minecraft.loot.functions.ILootFunction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModLootFunctionTypes {
-    public static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTION_TYPES = DeferredRegister.create(ResourceKey.createRegistryKey(new ResourceLocation("loot_function_type")), ItemProtectionEnchantments.MOD_ID);
+    public static final List<LootFunctionType> LOOT_FUNCTION_TYPES = new ArrayList<>();
 
-    public static final RegistryObject<LootItemFunctionType> COPY_ENCHANTMENTS = LOOT_FUNCTION_TYPES.register("copy_enchantments", () -> new LootItemFunctionType(new CopyEnchantmentFunction.Serializer()));
+    public static final LootFunctionType COPY_ENCHANTMENTS = register("copy_enchantments", new CopyEnchantment.Serializer());
+
+    private static LootFunctionType register(String name, ILootSerializer<? extends ILootFunction> serializer) {
+        LootFunctionType lootFunctionType = Registry.register(Registry.LOOT_FUNCTION_TYPE, new ResourceLocation(ItemProtectionEnchantments.MOD_ID + ":" + name), new LootFunctionType(serializer));
+        LOOT_FUNCTION_TYPES.add(lootFunctionType);
+
+        return lootFunctionType;
+    }
 }

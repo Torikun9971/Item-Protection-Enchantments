@@ -3,9 +3,9 @@ package com.item_protection_enchantments;
 import com.item_protection_enchantments.config.ModConfiguration;
 import com.item_protection_enchantments.enchantments.event.ItemProtectionEvent;
 import com.item_protection_enchantments.init.*;
-import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,7 +16,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Locale;
 import java.util.Map;
@@ -24,13 +25,13 @@ import java.util.Map;
 @Mod(ItemProtectionEnchantments.MOD_ID)
 public class ItemProtectionEnchantments {
     public static final String MOD_ID = "protection_enchantments";
-    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public ItemProtectionEnchantments() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEnchantments.ENCHANTMENTS.register(modEventBus);
-        ModLootFunctionTypes.LOOT_FUNCTION_TYPES.register(modEventBus);
+        modEventBus.register(ModLootFunctionTypes.LOOT_FUNCTION_TYPES);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_CONFIG, String.format(Locale.ROOT, "%s.toml", MOD_ID));
 
@@ -39,8 +40,9 @@ public class ItemProtectionEnchantments {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        IEventBus modEventBus = MinecraftForge.EVENT_BUS;
-        modEventBus.register(new ItemProtectionEvent());
+        IEventBus modEventBusEvent = MinecraftForge.EVENT_BUS;
+
+        modEventBusEvent.register(new ItemProtectionEvent());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -49,7 +51,7 @@ public class ItemProtectionEnchantments {
     }
 
     public static boolean hasEnchantment(ItemStack itemStack, boolean mustHaveAll, Enchantment... enchantments) {
-        Map<Enchantment, Integer> enchantmentsMap = itemStack.getAllEnchantments();
+        Map<Enchantment, Integer> enchantmentsMap = EnchantmentHelper.getEnchantments(itemStack);
 
         for (Enchantment enchantment : enchantments) {
             if (mustHaveAll) {

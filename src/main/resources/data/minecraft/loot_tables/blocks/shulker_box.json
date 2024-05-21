@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
@@ -13,34 +13,33 @@
             },
             {
               "function": "minecraft:copy_nbt",
+              "source": "block_entity",
               "ops": [
                 {
-                  "op": "replace",
                   "source": "Lock",
-                  "target": "BlockEntityTag.Lock"
+                  "target": "BlockEntityTag.Lock",
+                  "op": "replace"
                 },
                 {
-                  "op": "replace",
                   "source": "LootTable",
-                  "target": "BlockEntityTag.LootTable"
+                  "target": "BlockEntityTag.LootTable",
+                  "op": "replace"
                 },
                 {
-                  "op": "replace",
                   "source": "LootTableSeed",
-                  "target": "BlockEntityTag.LootTableSeed"
+                  "target": "BlockEntityTag.LootTableSeed",
+                  "op": "replace"
                 }
-              ],
-              "source": "block_entity"
+              ]
             },
             {
-              "type": "minecraft:shulker_box",
+              "function": "minecraft:set_contents",
               "entries": [
                 {
                   "type": "minecraft:dynamic",
                   "name": "minecraft:contents"
                 }
-              ],
-              "function": "minecraft:set_contents"
+              ]
             },
             {
               "function": "protection_enchantments:copy_enchantments"
@@ -48,9 +47,7 @@
           ],
           "name": "minecraft:shulker_box"
         }
-      ],
-      "rolls": 1.0
+      ]
     }
-  ],
-  "random_sequence": "minecraft:blocks/shulker_box"
+  ]
 }
