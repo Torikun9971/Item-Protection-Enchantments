@@ -1,9 +1,9 @@
 package com.item_protection_enchantments.blockentities;
 
-import net.minecraft.nbt.ListTag;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.nbt.NbtList;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
 public interface EnchantableBlock {
@@ -11,5 +11,5 @@ public interface EnchantableBlock {
 
     Map<Enchantment, Integer> getEnchantments();
 
-    ListTag getEnchantmentTag();
+    NbtList getEnchantmentNbt();
 }

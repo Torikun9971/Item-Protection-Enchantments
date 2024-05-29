@@ -3,5 +3,25 @@
   "enchantment.protection_enchantments.cactus_protection_item": "サボテン耐性 (アイテム)",
   "enchantment.protection_enchantments.blast_protection_item": "爆発耐性 (アイテム)",
   "enchantment.protection_enchantments.void_protection_item": "奈落耐性 (アイテム)",
-  "enchantment.protection_enchantments.expire_protection_item": "時間耐性 (アイテム)"
+  "enchantment.protection_enchantments.expire_protection_item": "時間耐性 (アイテム)",
+
+  "modmenu.descriptionTranslation.protection_enchantments": "アイテムを保護するエンチャントを追加します",
+  "text.autoconfig.protection_enchantments.option.enchantableItems": "エンチャント可能なアイテム",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment": "火炎耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.minimumPower": "最小経験値",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.glow": "発光",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment": "サボテン耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.minimumPower": "最小経験値",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment": "爆発耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.minimumPower": "最小経験値",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment": "奈落耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.minimumPower": "最小経験値",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.glow": "発光",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment": "時間耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.minimumPower": "最小経験値",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.rarity": "レアリティ"
 }

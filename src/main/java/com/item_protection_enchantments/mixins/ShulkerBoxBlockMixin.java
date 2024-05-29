@@ -1,71 +1,71 @@
 package com.item_protection_enchantments.mixins;
 
 import com.item_protection_enchantments.blockentities.EnchantableBlock;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ShulkerBoxBlockEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DyeColor;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
-
 @Mixin(ShulkerBoxBlock.class)
-public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
+public abstract class ShulkerBoxBlockMixin extends BlockWithEntity {
     @Shadow
     @Nullable
     public abstract DyeColor getColor();
 
-    public ShulkerBoxBlockMixin(Properties properties) {
-        super(properties);
+    public ShulkerBoxBlockMixin(Settings settings) {
+        super(settings);
     }
 
-    @Inject(method = "playerWillDestroy", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player, CallbackInfo ci) {
-        BlockEntity blockentity = level.getBlockEntity(pos);
-        if (blockentity instanceof ShulkerBoxBlockEntity shulkerboxblockentity) {
-            if (!level.isClientSide && player.isCreative() && !shulkerboxblockentity.isEmpty()) {
-                ItemStack itemstack = ShulkerBoxBlock.getColoredItemStack(this.getColor());
-                blockentity.saveToItem(itemstack);
-                if (shulkerboxblockentity.hasCustomName()) {
-                    itemstack.setHoverName(shulkerboxblockentity.getCustomName());
+    @Inject(method = "onBreak", at = @At("HEAD"), cancellable = true)
+    public void protection_enchantments$onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof ShulkerBoxBlockEntity) {
+            ShulkerBoxBlockEntity shulkerBoxBlockEntity = (ShulkerBoxBlockEntity)blockEntity;
+            if (!world.isClient && player.isCreative() && !shulkerBoxBlockEntity.isEmpty()) {
+                ItemStack itemStack = ShulkerBoxBlock.getItemStack(this.getColor());
+                blockEntity.setStackNbt(itemStack);
+                if (shulkerBoxBlockEntity.hasCustomName()) {
+                    itemStack.setCustomName(shulkerBoxBlockEntity.getCustomName());
                 }
 
-                if (blockentity instanceof EnchantableBlock enchantableBlock) {
-                    if (enchantableBlock.getEnchantmentTag() != null) {
-                        itemstack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
+                if (blockEntity instanceof EnchantableBlock enchantableBlock) {
+                    if (enchantableBlock.getEnchantmentNbt() != null) {
+                        itemStack.getOrCreateNbt().put("Enchantments", enchantableBlock.getEnchantmentNbt());
                     }
                 }
 
-                ItemEntity itementity = new ItemEntity(level, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack);
-                itementity.setDefaultPickUpDelay();
-                level.addFreshEntity(itementity);
+                ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
+                itemEntity.setToDefaultPickupDelay();
+                world.spawnEntity(itemEntity);
             } else {
-                shulkerboxblockentity.unpackLootTable(player);
+                shulkerBoxBlockEntity.checkLootInteraction(player);
             }
         }
-
-        super.playerWillDestroy(level, pos, state, player);
+        super.onBreak(world, pos, state, player);
         ci.cancel();
     }
 
-    @Inject(method = "setPlacedBy", at = @At("HEAD"))
-    public void protection_enchantments$setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack, CallbackInfo ci) {
-        BlockEntity blockentity = level.getBlockEntity(pos);
+    @Inject(method = "onPlaced", at = @At("HEAD"))
+    public void protection_enchantments$onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack, CallbackInfo ci) {
+        BlockEntity blockentity = world.getBlockEntity(pos);
 
         if (blockentity instanceof EnchantableBlock enchantableBlock) {
-            enchantableBlock.setEnchantments(stack.getAllEnchantments());
+            enchantableBlock.setEnchantments(EnchantmentHelper.get(stack));
         }
     }
 }

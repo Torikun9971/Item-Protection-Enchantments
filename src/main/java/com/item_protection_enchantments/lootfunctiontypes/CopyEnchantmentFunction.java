@@ -5,47 +5,47 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.item_protection_enchantments.blockentities.EnchantableBlock;
 import com.item_protection_enchantments.init.ModLootFunctionTypes;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameter;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.function.ConditionalLootFunction;
+import net.minecraft.loot.function.LootFunctionType;
 
 import java.util.Set;
 
-public class CopyEnchantmentFunction extends LootItemConditionalFunction {
-    CopyEnchantmentFunction(LootItemCondition[] conditions) {
+public class CopyEnchantmentFunction extends ConditionalLootFunction {
+    CopyEnchantmentFunction(LootCondition[] conditions) {
         super(conditions);
     }
 
     @Override
-    public LootItemFunctionType getType() {
-        return ModLootFunctionTypes.COPY_ENCHANTMENTS.get();
+    public LootFunctionType getType() {
+        return ModLootFunctionTypes.COPY_ENCHANTMENTS;
     }
 
     @Override
-    public Set<LootContextParam<?>> getReferencedContextParams() {
-        return ImmutableSet.of(LootContextParams.BLOCK_ENTITY);
+    public Set<LootContextParameter<?>> getRequiredParameters() {
+        return ImmutableSet.of(LootContextParameters.BLOCK_ENTITY);
     }
 
     @Override
-    protected ItemStack run(ItemStack stack, LootContext context) {
-        BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
+    protected ItemStack process(ItemStack stack, LootContext context) {
+        BlockEntity blockEntity = context.get(LootContextParameters.BLOCK_ENTITY);
         if (blockEntity instanceof EnchantableBlock enchantableBlock) {
-            if (enchantableBlock.getEnchantmentTag() != null) {
-                stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
+            if (enchantableBlock.getEnchantmentNbt() != null) {
+                stack.getOrCreateNbt().put("Enchantments", enchantableBlock.getEnchantmentNbt());
             }
         }
 
         return stack;
     }
 
-    public static class Serializer extends LootItemConditionalFunction.Serializer<CopyEnchantmentFunction> {
+    public static class Serializer extends ConditionalLootFunction.Serializer<CopyEnchantmentFunction> {
         @Override
-        public CopyEnchantmentFunction deserialize(JsonObject jsonObject, JsonDeserializationContext context, LootItemCondition[] conditions) {
+        public CopyEnchantmentFunction fromJson(JsonObject jsonObject, JsonDeserializationContext context, LootCondition[] conditions) {
             return new CopyEnchantmentFunction(conditions);
         }
     }

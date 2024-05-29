@@ -1,39 +1,40 @@
 package com.item_protection_enchantments.mixins;
 
 import com.item_protection_enchantments.blockentities.EnchantableBlock;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
+import net.minecraft.block.entity.ShulkerBoxBlockEntity;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
 @Mixin(ShulkerBoxBlockEntity.class)
 public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
     @Unique
-    protected ListTag protection_enchantments$enchantmentTag = new ListTag();
+    protected NbtList protection_enchantments$enchantmentNbt = new NbtList();
 
-    @Inject(method = "saveAdditional", at = @At("TAIL"))
-    protected void protection_enchantments$saveAdditional(CompoundTag tag, CallbackInfo ci) {
-        if (this.protection_enchantments$enchantmentTag != null) tag.put("Enchantments", protection_enchantments$enchantmentTag);
+    @Inject(method = "readNbt", at = @At("TAIL"))
+    public void protection_enchantments$readNbt(NbtCompound nbt, CallbackInfo ci) {
+        if (nbt.contains("Enchantments")) {
+            this.protection_enchantments$enchantmentNbt = nbt.getList("Enchantments", NbtElement.COMPOUND_TYPE);
+        }
     }
 
-    @Inject(method = "loadFromTag", at = @At("TAIL"))
-    public void protection_enchantments$loadFromTag(CompoundTag tag, CallbackInfo ci) {
-        if (tag.contains("Enchantments")) {
-            this.protection_enchantments$enchantmentTag = tag.getList("Enchantments", ListTag.TAG_COMPOUND);
-        }
+    @Inject(method = "writeNbt", at = @At("TAIL"))
+    protected void protection_enchantments$writeNbt(NbtCompound nbt, CallbackInfo ci) {
+        if (this.protection_enchantments$enchantmentNbt != null) nbt.put("Enchantments", protection_enchantments$enchantmentNbt);
     }
 
     @Override
     public void setEnchantments(@Nullable Map<Enchantment, Integer> enchantments) {
-        protection_enchantments$enchantmentTag.clear();
+        protection_enchantments$enchantmentNbt.clear();
 
         if (enchantments != null) {
             for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
@@ -41,7 +42,7 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
 
                 if (enchantment != null) {
                     int lvl = entry.getValue();
-                    protection_enchantments$enchantmentTag.add(EnchantmentHelper.storeEnchantment(EnchantmentHelper.getEnchantmentId(enchantment), lvl));
+                    protection_enchantments$enchantmentNbt.add(EnchantmentHelper.createNbt(EnchantmentHelper.getEnchantmentId(enchantment), lvl));
                 }
             }
         }
@@ -49,11 +50,11 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
 
     @Override
     public Map<Enchantment, Integer> getEnchantments() {
-        return EnchantmentHelper.deserializeEnchantments(protection_enchantments$enchantmentTag);
+        return EnchantmentHelper.fromNbt(protection_enchantments$enchantmentNbt);
     }
 
     @Override
-    public ListTag getEnchantmentTag() {
-        return protection_enchantments$enchantmentTag;
+    public NbtList getEnchantmentNbt() {
+        return protection_enchantments$enchantmentNbt;
     }
 }

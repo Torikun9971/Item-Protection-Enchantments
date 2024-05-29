@@ -2,13 +2,15 @@ package com.item_protection_enchantments.init;
 
 import com.item_protection_enchantments.ItemProtectionEnchantments;
 import com.item_protection_enchantments.lootfunctiontypes.CopyEnchantmentFunction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.loot.function.LootFunctionType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 public class ModLootFunctionTypes {
-    public static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTION_TYPES = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, ItemProtectionEnchantments.MOD_ID);
+    public static LootFunctionType COPY_ENCHANTMENTS;
 
-    public static final RegistryObject<LootItemFunctionType> COPY_ENCHANTMENTS = LOOT_FUNCTION_TYPES.register("copy_enchantments", () -> new LootItemFunctionType(new CopyEnchantmentFunction.Serializer()));
+    public static void init() {
+        COPY_ENCHANTMENTS = Registry.register(Registries.LOOT_FUNCTION_TYPE, new Identifier(ItemProtectionEnchantments.MOD_ID, "copy_enchantments"), new LootFunctionType(new CopyEnchantmentFunction.Serializer()));
+    }
 }

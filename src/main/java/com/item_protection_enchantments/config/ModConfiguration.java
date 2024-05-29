@@ -1,95 +1,100 @@
 package com.item_protection_enchantments.config;
 
+import com.item_protection_enchantments.ItemProtectionEnchantments;
 import com.item_protection_enchantments.enchantments.ItemProtectionEnchantment;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.common.ForgeConfigSpec;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.BoundedDiscrete;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import net.minecraft.enchantment.Enchantment;
 
-public class ModConfiguration {
-    public static final ForgeConfigSpec COMMON_CONFIG;
+@Config(name = ItemProtectionEnchantments.MOD_ID)
+public class ModConfiguration implements ConfigData {
+    @Comment("Items that can be enchanted\n" +
+            "Allowed Values: ALL_ITEMS, ITEMS_AND_COMPATIBLE_BLOCKS")
+    @EnumHandler()
+    public ItemProtectionEnchantment.EnchantmentTargetPredicates enchantableItems = ItemProtectionEnchantment.EnchantmentTargetPredicates.ITEMS_AND_COMPATIBLE_BLOCKS;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentCategories> ENCHANTABLE_ITEMS;
+    @CollapsibleObject
+    public FireProtectionEnchantment fireProtectionEnchantment = new FireProtectionEnchantment();
 
-    public static final ForgeConfigSpec.IntValue FIRE_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> FIRE_PROTECTION_RARITY;
-    public static final ForgeConfigSpec.BooleanValue FIRE_PROTECTION_GLOWING_TAG;
+    @CollapsibleObject
+    public CactusProtectionEnchantment cactusProtectionEnchantment = new CactusProtectionEnchantment();
 
-    public static final ForgeConfigSpec.IntValue CACTUS_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> CACTUS_PROTECTION_RARITY;
+    @CollapsibleObject
+    public BlastProtectionEnchantment blastProtectionEnchantment = new BlastProtectionEnchantment();
 
-    public static final ForgeConfigSpec.IntValue BLAST_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> BLAST_PROTECTION_RARITY;
+    @CollapsibleObject
+    public VoidProtectionEnchantment voidProtectionEnchantment = new VoidProtectionEnchantment();
 
-    public static final ForgeConfigSpec.IntValue VOID_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> VOID_PROTECTION_RARITY;
-    public static final ForgeConfigSpec.BooleanValue VOID_PROTECTION_GLOWING_TAG;
+    @CollapsibleObject
+    public ExpireProtectionEnchantment expireProtectionEnchantment = new ExpireProtectionEnchantment();
 
-    public static final ForgeConfigSpec.IntValue EXPIRE_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> EXPIRE_PROTECTION_RARITY;
+    public static class FireProtectionEnchantment {
+        @Comment("Minimum experience cost required to apply the enchantment")
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
+        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
 
-    static {
-        ForgeConfigSpec.Builder COMMON_CONFIG_BUILDER = new ForgeConfigSpec.Builder();
+        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
+                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
+        @EnumHandler
+        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
 
-        COMMON_CONFIG_BUILDER.comment("Game Settings\n");
+        @Comment("Should items glow when submerged in lava?")
+        public boolean glow = false;
+    }
 
-        ENCHANTABLE_ITEMS = COMMON_CONFIG_BUILDER.comment("Items that can be enchanted")
-                .defineEnum("enchantableItems", ItemProtectionEnchantment.EnchantmentCategories.ITEMS_AND_COMPATIBLE_BLOCKS);
+    public static class CactusProtectionEnchantment {
+        @Comment("Minimum experience cost required to apply the enchantment")
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
+        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
 
-        COMMON_CONFIG_BUILDER.push("Fire Protection Enchantments");
+        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
+                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
+        @EnumHandler
+        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+    }
 
-        FIRE_PROTECTION_MIN_COST = COMMON_CONFIG_BUILDER.comment("Minimum experience cost required to apply the enchantment")
-                .defineInRange("minimumCost", ItemProtectionEnchantment.MIN_COST, 0, ItemProtectionEnchantment.MAX_COST);
+    public static class BlastProtectionEnchantment {
+        @Comment("Minimum experience cost required to apply the enchantment")
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
+        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
 
-        FIRE_PROTECTION_RARITY = COMMON_CONFIG_BUILDER.comment("Enchantment Rarity (likelihood of obtaining the enchantment)")
-                .defineEnum("rarity", Enchantment.Rarity.VERY_RARE);
+        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
+                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
+        @EnumHandler
+        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+    }
 
-        FIRE_PROTECTION_GLOWING_TAG = COMMON_CONFIG_BUILDER.comment("Should items glow when submerged in lava?")
-                .define("glow", false);
+    public static class VoidProtectionEnchantment {
+        @Comment("Minimum experience cost required to apply the enchantment")
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
+        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
 
-        COMMON_CONFIG_BUILDER.pop();
+        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
+                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
+        @EnumHandler
+        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
 
-        COMMON_CONFIG_BUILDER.push("Cactus Protection Enchantments");
+        @Comment("Should the item glow when it falls into the void?")
+        public boolean glow = true;
+    }
 
-        CACTUS_PROTECTION_MIN_COST = COMMON_CONFIG_BUILDER.comment("Minimum experience cost required to apply the enchantment")
-                .defineInRange("minimumCost", ItemProtectionEnchantment.MIN_COST, 0, ItemProtectionEnchantment.MAX_COST);
+    public static class ExpireProtectionEnchantment {
+        @Comment("Minimum experience cost required to apply the enchantment")
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
+        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
 
-        CACTUS_PROTECTION_RARITY = COMMON_CONFIG_BUILDER.comment("Enchantment Rarity (likelihood of obtaining the enchantment)")
-                .defineEnum("rarity", Enchantment.Rarity.VERY_RARE);
+        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
+                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
+        @EnumHandler
+        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+    }
 
-        COMMON_CONFIG_BUILDER.pop();
-
-        COMMON_CONFIG_BUILDER.push("Blast Protection Enchantments");
-
-        BLAST_PROTECTION_MIN_COST = COMMON_CONFIG_BUILDER.comment("Minimum experience cost required to apply the enchantment")
-                .defineInRange("minimumCost", ItemProtectionEnchantment.MIN_COST, 0, ItemProtectionEnchantment.MAX_COST);
-
-        BLAST_PROTECTION_RARITY = COMMON_CONFIG_BUILDER.comment("Enchantment Rarity (likelihood of obtaining the enchantment)")
-                .defineEnum("rarity", Enchantment.Rarity.VERY_RARE);
-
-        COMMON_CONFIG_BUILDER.pop();
-
-        COMMON_CONFIG_BUILDER.push("Void Protection Enchantments");
-
-        VOID_PROTECTION_MIN_COST = COMMON_CONFIG_BUILDER.comment("Minimum experience cost required to apply the enchantment")
-                .defineInRange("minimumCost", ItemProtectionEnchantment.MIN_COST, 0, ItemProtectionEnchantment.MAX_COST);
-
-        VOID_PROTECTION_RARITY = COMMON_CONFIG_BUILDER.comment("Enchantment Rarity (likelihood of obtaining the enchantment)")
-                .defineEnum("rarity", Enchantment.Rarity.VERY_RARE);
-
-        VOID_PROTECTION_GLOWING_TAG = COMMON_CONFIG_BUILDER.comment("Should the item glow when it falls into the void?")
-                .define("glow", true);
-
-        COMMON_CONFIG_BUILDER.pop();
-
-        COMMON_CONFIG_BUILDER.push("Expire Protection Enchantments");
-
-        EXPIRE_PROTECTION_MIN_COST = COMMON_CONFIG_BUILDER.comment("Minimum experience cost required to apply the enchantment")
-                .defineInRange("minimumCost", ItemProtectionEnchantment.MIN_COST, 0, ItemProtectionEnchantment.MAX_COST);
-
-        EXPIRE_PROTECTION_RARITY = COMMON_CONFIG_BUILDER.comment("Enchantment Rarity (likelihood of obtaining the enchantment)")
-                .defineEnum("rarity", Enchantment.Rarity.VERY_RARE);
-
-        COMMON_CONFIG_BUILDER.pop();
-
-        COMMON_CONFIG = COMMON_CONFIG_BUILDER.build();
+    public static ModConfiguration getConfig() {
+        return AutoConfig.getConfigHolder(ModConfiguration.class).getConfig();
     }
 }

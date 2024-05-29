@@ -3,5 +3,24 @@
   "enchantment.protection_enchantments.cactus_protection_item": "Cactus Protection (Item)",
   "enchantment.protection_enchantments.blast_protection_item": "Blast Protection (Item)",
   "enchantment.protection_enchantments.void_protection_item": "Void Protection (Item)",
-  "enchantment.protection_enchantments.expire_protection_item": "Expire Protection (Item)"
+  "enchantment.protection_enchantments.expire_protection_item": "Expire Protection (Item)",
+
+  "text.autoconfig.protection_enchantments.option.enchantableItems": "Enchantable Items",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment": "Fire Protection Enchantments",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.minimumPower": "Minimum Experience",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.rarity": "Rarity",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.glow": "Glow",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment": "Cactus Protection Enchantments",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.minimumPower": "Minimum Experience",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.rarity": "Rarity",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment": "Blast Protection Enchantments",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.minimumPower": "Minimum Experience",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.rarity": "Rarity",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment": "Void Protection Enchantments",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.minimumPower": "Minimum Experience",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.rarity": "Rarity",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.glow": "Glow",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment": "Expire Protection Enchantments",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.minimumPower": "Minimum Experience",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.rarity": "Rarity"
 }

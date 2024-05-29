@@ -1,15 +1,16 @@
 {
   "required": true,
-  "minVersion": "0.8.5",
+  "minVersion": "0.8",
   "package": "com.item_protection_enchantments.mixins",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "protection_enchantments.refmap.json",
   "mixins": [
-    "BaseFireBlockMixin",
     "CactusBlockMixin",
     "EntityMixin",
+    "ItemEntityMixin",
     "ShulkerBoxBlockEntityMixin",
     "ShulkerBoxBlockMixin"
+  ],
+  "client": [
   ],
   "injectors": {
     "defaultRequire": 1
