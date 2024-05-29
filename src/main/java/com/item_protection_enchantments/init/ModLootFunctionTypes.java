@@ -10,5 +10,5 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModLootFunctionTypes {
     public static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTION_TYPES = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, ItemProtectionEnchantments.MOD_ID);
 
-    public static final RegistryObject<LootItemFunctionType> COPY_ENCHANTMENTS = LOOT_FUNCTION_TYPES.register("copy_enchantments", () -> new LootItemFunctionType(new CopyEnchantmentFunction.Serializer()));
+    public static final RegistryObject<LootItemFunctionType> COPY_ENCHANTMENTS = LOOT_FUNCTION_TYPES.register("copy_enchantments", () -> new LootItemFunctionType(CopyEnchantmentFunction.CODEC));
 }
