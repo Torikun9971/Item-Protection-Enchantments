@@ -18,6 +18,7 @@ public abstract class EntityMixin {
             ItemEntity itemEntity = (ItemEntity) (Object) this;
 
             if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.FIRE_PROTECTION_ITEM.get())) {
+                if (!itemEntity.isGlowing()) itemEntity.setGlowing(ModConfiguration.FIRE_PROTECTION_GLOWING_TAG.get());
                 ci.cancel();
             }
         }
@@ -33,7 +34,7 @@ public abstract class EntityMixin {
                 itemEntity.setInvulnerable(true);
                 itemEntity.setPos(itemEntity.getX(), 1, itemEntity.getZ());
                 itemEntity.setDeltaMovement(0, 0, 0);
-                itemEntity.setGlowing(ModConfiguration.VOID_PROTECTION_GLOWING_TAG.get());
+                if (!itemEntity.isGlowing()) itemEntity.setGlowing(ModConfiguration.VOID_PROTECTION_GLOWING_TAG.get());
 
                 ci.cancel();
             }

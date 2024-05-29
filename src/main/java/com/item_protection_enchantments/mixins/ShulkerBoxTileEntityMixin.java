@@ -5,9 +5,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.ShulkerBoxTileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,13 +17,9 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 @Mixin(ShulkerBoxTileEntity.class)
-public abstract class ShulkerBoxTileEntityMixin extends LockableLootTileEntity implements EnchantableBlock {
+public abstract class ShulkerBoxTileEntityMixin implements EnchantableBlock {
     @Unique
     protected ListNBT protection_enchantments$enchantmentTag = new ListNBT();
-
-    public ShulkerBoxTileEntityMixin() {
-        super(TileEntityType.SHULKER_BOX);
-    }
 
     @Inject(method = "saveToTag", at = @At("TAIL"))
     public void protection_enchantments$saveAdditional(CompoundNBT nbt, CallbackInfoReturnable<CompoundNBT> cir) {
