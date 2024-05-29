@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 
@@ -32,7 +33,7 @@ public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
     }
 
     @Inject(method = "playerWillDestroy", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player, CallbackInfo ci) {
+    public void protection_enchantments$playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<BlockState> cir) {
         BlockEntity blockentity = level.getBlockEntity(pos);
         if (blockentity instanceof ShulkerBoxBlockEntity shulkerboxblockentity) {
             if (!level.isClientSide && player.isCreative() && !shulkerboxblockentity.isEmpty()) {
@@ -48,7 +49,7 @@ public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
                     }
                 }
 
-                ItemEntity itementity = new ItemEntity(level, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack);
+                ItemEntity itementity = new ItemEntity(level, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemstack);
                 itementity.setDefaultPickUpDelay();
                 level.addFreshEntity(itementity);
             } else {
@@ -56,8 +57,7 @@ public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
             }
         }
 
-        super.playerWillDestroy(level, pos, state, player);
-        ci.cancel();
+        cir.setReturnValue(super.playerWillDestroy(level, pos, state, player));
     }
 
     @Inject(method = "setPlacedBy", at = @At("HEAD"))

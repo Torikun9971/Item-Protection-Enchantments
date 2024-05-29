@@ -1,15 +1,11 @@
 package com.item_protection_enchantments.mixins;
 
 import com.item_protection_enchantments.blockentities.EnchantableBlock;
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,13 +15,9 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 @Mixin(ShulkerBoxBlockEntity.class)
-public abstract class ShulkerBoxBlockEntityMixin extends RandomizableContainerBlockEntity implements EnchantableBlock {
+public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
     @Unique
     protected ListTag protection_enchantments$enchantmentTag = new ListTag();
-
-    public ShulkerBoxBlockEntityMixin(BlockPos pos, BlockState state) {
-        super(BlockEntityType.SHULKER_BOX, pos, state);
-    }
 
     @Inject(method = "saveAdditional", at = @At("TAIL"))
     protected void protection_enchantments$saveAdditional(CompoundTag tag, CallbackInfo ci) {
