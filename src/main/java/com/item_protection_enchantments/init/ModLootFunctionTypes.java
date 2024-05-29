@@ -11,6 +11,6 @@ public class ModLootFunctionTypes {
     public static LootFunctionType COPY_ENCHANTMENTS;
 
     public static void init() {
-        COPY_ENCHANTMENTS = Registry.register(Registries.LOOT_FUNCTION_TYPE, new Identifier(ItemProtectionEnchantments.MOD_ID, "copy_enchantments"), new LootFunctionType(new CopyEnchantmentFunction.Serializer()));
+        COPY_ENCHANTMENTS = Registry.register(Registries.LOOT_FUNCTION_TYPE, new Identifier(ItemProtectionEnchantments.MOD_ID, "copy_enchantments"), new LootFunctionType(CopyEnchantmentFunction.CODEC));
     }
 }

@@ -1,10 +1,10 @@
 package com.item_protection_enchantments.lootfunctiontypes;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
 import com.item_protection_enchantments.blockentities.EnchantableBlock;
 import com.item_protection_enchantments.init.ModLootFunctionTypes;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.condition.LootCondition;
@@ -14,10 +14,15 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.function.ConditionalLootFunction;
 import net.minecraft.loot.function.LootFunctionType;
 
+import java.util.List;
 import java.util.Set;
 
 public class CopyEnchantmentFunction extends ConditionalLootFunction {
-    CopyEnchantmentFunction(LootCondition[] conditions) {
+    public static final Codec<CopyEnchantmentFunction> CODEC = RecordCodecBuilder.create((instance) -> {
+        return addConditionsField(instance).apply(instance, CopyEnchantmentFunction::new);
+    });
+
+    CopyEnchantmentFunction(List<LootCondition> conditions) {
         super(conditions);
     }
 
@@ -41,12 +46,5 @@ public class CopyEnchantmentFunction extends ConditionalLootFunction {
         }
 
         return stack;
-    }
-
-    public static class Serializer extends ConditionalLootFunction.Serializer<CopyEnchantmentFunction> {
-        @Override
-        public CopyEnchantmentFunction fromJson(JsonObject jsonObject, JsonDeserializationContext context, LootCondition[] conditions) {
-            return new CopyEnchantmentFunction(conditions);
-        }
     }
 }

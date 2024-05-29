@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ShulkerBoxBlock.class)
 public abstract class ShulkerBoxBlockMixin extends BlockWithEntity {
@@ -32,10 +33,9 @@ public abstract class ShulkerBoxBlockMixin extends BlockWithEntity {
     }
 
     @Inject(method = "onBreak", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
+    public void protection_enchantments$onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfoReturnable<BlockState> cir) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof ShulkerBoxBlockEntity) {
-            ShulkerBoxBlockEntity shulkerBoxBlockEntity = (ShulkerBoxBlockEntity)blockEntity;
+        if (blockEntity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity) {
             if (!world.isClient && player.isCreative() && !shulkerBoxBlockEntity.isEmpty()) {
                 ItemStack itemStack = ShulkerBoxBlock.getItemStack(this.getColor());
                 blockEntity.setStackNbt(itemStack);
@@ -53,11 +53,11 @@ public abstract class ShulkerBoxBlockMixin extends BlockWithEntity {
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
             } else {
-                shulkerBoxBlockEntity.checkLootInteraction(player);
+                shulkerBoxBlockEntity.generateLoot(player);
             }
         }
-        super.onBreak(world, pos, state, player);
-        ci.cancel();
+
+        cir.setReturnValue(super.onBreak(world, pos, state, player));
     }
 
     @Inject(method = "onPlaced", at = @At("HEAD"))

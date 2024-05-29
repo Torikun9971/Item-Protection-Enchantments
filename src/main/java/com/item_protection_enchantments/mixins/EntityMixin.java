@@ -5,6 +5,7 @@ import com.item_protection_enchantments.config.ModConfiguration;
 import com.item_protection_enchantments.init.ModEnchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.world.explosion.Explosion;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,7 +39,7 @@ public abstract class EntityMixin {
     }
 
     @Inject(method = "isImmuneToExplosion", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$isImmuneToExplosion(CallbackInfoReturnable<Boolean> cir) {
+    public void protection_enchantments$isImmuneToExplosion(Explosion explosion, CallbackInfoReturnable<Boolean> cir) {
         if ((Object) this instanceof ItemEntity itemEntity) {
             if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getStack(), true, ModEnchantments.BLAST_PROTECTION_ITEM)) {
                 cir.setReturnValue(true);
