@@ -1,10 +1,13 @@
 # Item Protection Enchantments
 
-## Features
+## Description
 
-This mod adds various enchantments that protect items.
+This mod adds various enchantments that protect items
+
+Fabric version requires Fabric API and Cloth Config, and has compatibility with Mod Menu
 
 ## Support
+The 1.20.6 update involves significant changes to the API, so porting will take some time.
 
 | 📚                        | Forge                | Fabric               |
 |---------------------------|----------------------|----------------------|
