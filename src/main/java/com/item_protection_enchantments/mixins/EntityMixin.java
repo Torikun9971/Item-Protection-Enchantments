@@ -16,6 +16,7 @@ public abstract class EntityMixin {
     public void protection_enchantments$lavaHurt(CallbackInfo ci) {
         if ((Object) this instanceof ItemEntity itemEntity) {
             if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.FIRE_PROTECTION_ITEM.get())) {
+                if (!itemEntity.hasGlowingTag()) itemEntity.setGlowingTag(ModConfiguration.FIRE_PROTECTION_GLOWING_TAG.get());
                 ci.cancel();
             }
         }
@@ -29,7 +30,7 @@ public abstract class EntityMixin {
                 itemEntity.setInvulnerable(true);
                 itemEntity.setPos(itemEntity.getX(), itemEntity.getLevel().getMinBuildHeight() + 1, itemEntity.getZ());
                 itemEntity.setDeltaMovement(0, 0, 0);
-                itemEntity.setGlowingTag(ModConfiguration.VOID_PROTECTION_GLOWING_TAG.get());
+                if (!itemEntity.hasGlowingTag()) itemEntity.setGlowingTag(ModConfiguration.VOID_PROTECTION_GLOWING_TAG.get());
 
                 ci.cancel();
             }
