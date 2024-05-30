@@ -9,7 +9,12 @@ public class FireProtectionEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.getConfig().fireProtectionEnchantment.rarity;
+    public int getAnvilCost() {
+        return ModConfiguration.getConfig().fireProtectionEnchantment.anvilCost;
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.getConfig().fireProtectionEnchantment.weight;
     }
 }

@@ -1,0 +1,5 @@
+accessWidener v1 named
+extendable method net/minecraft/enchantment/Enchantment getWeight ()I
+extendable method net/minecraft/enchantment/Enchantment getAnvilCost ()I
+extendable method net/minecraft/enchantment/Enchantment getMinPower (I)I
+extendable method net/minecraft/enchantment/Enchantment getMaxPower (I)I

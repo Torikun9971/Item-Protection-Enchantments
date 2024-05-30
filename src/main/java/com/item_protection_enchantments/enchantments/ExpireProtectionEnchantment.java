@@ -9,7 +9,12 @@ public class ExpireProtectionEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.getConfig().expireProtectionEnchantment.rarity;
+    public int getAnvilCost() {
+        return ModConfiguration.getConfig().expireProtectionEnchantment.anvilCost;
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.getConfig().expireProtectionEnchantment.weight;
     }
 }

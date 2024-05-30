@@ -9,7 +9,12 @@ public class BlastProtectionEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.getConfig().blastProtectionEnchantment.rarity;
+    public int getAnvilCost() {
+        return ModConfiguration.getConfig().blastProtectionEnchantment.anvilCost;
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.getConfig().blastProtectionEnchantment.weight;
     }
 }

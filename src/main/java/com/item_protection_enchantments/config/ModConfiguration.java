@@ -9,14 +9,13 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.BoundedDiscrete;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
-import net.minecraft.enchantment.Enchantment;
 
 @Config(name = ItemProtectionEnchantments.MOD_ID)
 public class ModConfiguration implements ConfigData {
     @Comment("Items that can be enchanted\n" +
             "Allowed Values: ALL_ITEMS, ITEMS_AND_COMPATIBLE_BLOCKS")
     @EnumHandler()
-    public ItemProtectionEnchantment.EnchantmentTargetPredicates enchantableItems = ItemProtectionEnchantment.EnchantmentTargetPredicates.ITEMS_AND_COMPATIBLE_BLOCKS;
+    public ItemProtectionEnchantment.EnchantmentPredicates enchantableItems = ItemProtectionEnchantment.EnchantmentPredicates.ITEMS_AND_COMPATIBLE_BLOCKS;
 
     @CollapsibleObject
     public FireProtectionEnchantment fireProtectionEnchantment = new FireProtectionEnchantment();
@@ -35,13 +34,16 @@ public class ModConfiguration implements ConfigData {
 
     public static class FireProtectionEnchantment {
         @Comment("Minimum experience cost required to apply the enchantment")
-        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
-        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_LEVEL)
+        public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
-        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
-                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
-        @EnumHandler
-        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+        @Comment("Experience cost used when enchanting with an anvil")
+        @BoundedDiscrete(min = 0, max = 99)
+        public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
+
+        @Comment("Relative chance of the enchantment being offered")
+        @BoundedDiscrete(min = 0, max = 10)
+        public int weight = 1;
 
         @Comment("Should items glow when submerged in lava?")
         public boolean glow = false;
@@ -49,35 +51,44 @@ public class ModConfiguration implements ConfigData {
 
     public static class CactusProtectionEnchantment {
         @Comment("Minimum experience cost required to apply the enchantment")
-        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
-        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_LEVEL)
+        public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
-        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
-                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
-        @EnumHandler
-        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+        @Comment("Experience cost used when enchanting with an anvil")
+        @BoundedDiscrete(min = 0, max = 99)
+        public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
+
+        @Comment("Relative chance of the enchantment being offered")
+        @BoundedDiscrete(min = 0, max = 10)
+        public int weight = 1;
     }
 
     public static class BlastProtectionEnchantment {
         @Comment("Minimum experience cost required to apply the enchantment")
-        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
-        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_LEVEL)
+        public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
-        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
-                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
-        @EnumHandler
-        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+        @Comment("Experience cost used when enchanting with an anvil")
+        @BoundedDiscrete(min = 0, max = 99)
+        public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
+
+        @Comment("Relative chance of the enchantment being offered")
+        @BoundedDiscrete(min = 0, max = 10)
+        public int weight = 1;
     }
 
     public static class VoidProtectionEnchantment {
         @Comment("Minimum experience cost required to apply the enchantment")
-        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
-        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_LEVEL)
+        public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
-        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
-                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
-        @EnumHandler
-        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+        @Comment("Experience cost used when enchanting with an anvil")
+        @BoundedDiscrete(min = 0, max = 99)
+        public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
+
+        @Comment("Relative chance of the enchantment being offered")
+        @BoundedDiscrete(min = 0, max = 10)
+        public int weight = 1;
 
         @Comment("Should the item glow when it falls into the void?")
         public boolean glow = true;
@@ -85,13 +96,16 @@ public class ModConfiguration implements ConfigData {
 
     public static class ExpireProtectionEnchantment {
         @Comment("Minimum experience cost required to apply the enchantment")
-        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_POWER)
-        public int minimumPower = ItemProtectionEnchantment.MIN_POWER;
+        @BoundedDiscrete(min = 0, max = ItemProtectionEnchantment.MAX_LEVEL)
+        public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
-        @Comment("Enchantment Rarity (likelihood of obtaining the enchantment)\n" +
-                "Allowed Values: COMMON, UNCOMMON, RARE, VERY_RARE")
-        @EnumHandler
-        public Enchantment.Rarity rarity = Enchantment.Rarity.VERY_RARE;
+        @Comment("Experience cost used when enchanting with an anvil")
+        @BoundedDiscrete(min = 0, max = 99)
+        public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
+
+        @Comment("Relative chance of the enchantment being offered")
+        @BoundedDiscrete(min = 0, max = 10)
+        public int weight = 1;
     }
 
     public static ModConfiguration getConfig() {
