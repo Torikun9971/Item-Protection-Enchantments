@@ -4,7 +4,7 @@
 
 This mod adds various enchantments that protect items
 
-Fabric version requires **Fabric API** and **Cloth Config**, and has compatibility with Mod Menu
+Fabric version requires [**Fabric API**](https://modrinth.com/mod/fabric-api) and [**Cloth Config**](https://modrinth.com/mod/cloth-config), and has compatibility with [Mod Menu](https://modrinth.com/mod/modmenu)
 
 ## Support
 
