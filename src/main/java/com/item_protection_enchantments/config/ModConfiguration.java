@@ -38,7 +38,7 @@ public class ModConfiguration implements ConfigData {
         public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
         @Comment("Experience cost used when enchanting with an anvil")
-        @BoundedDiscrete(min = 0, max = 99)
+        @BoundedDiscrete(min = 0, max = 80)
         public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
 
         @Comment("Relative chance of the enchantment being offered")
@@ -55,7 +55,7 @@ public class ModConfiguration implements ConfigData {
         public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
         @Comment("Experience cost used when enchanting with an anvil")
-        @BoundedDiscrete(min = 0, max = 99)
+        @BoundedDiscrete(min = 0, max = 80)
         public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
 
         @Comment("Relative chance of the enchantment being offered")
@@ -69,7 +69,7 @@ public class ModConfiguration implements ConfigData {
         public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
         @Comment("Experience cost used when enchanting with an anvil")
-        @BoundedDiscrete(min = 0, max = 99)
+        @BoundedDiscrete(min = 0, max = 80)
         public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
 
         @Comment("Relative chance of the enchantment being offered")
@@ -83,7 +83,7 @@ public class ModConfiguration implements ConfigData {
         public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
         @Comment("Experience cost used when enchanting with an anvil")
-        @BoundedDiscrete(min = 0, max = 99)
+        @BoundedDiscrete(min = 0, max = 80)
         public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
 
         @Comment("Relative chance of the enchantment being offered")
@@ -100,7 +100,7 @@ public class ModConfiguration implements ConfigData {
         public int minimumPower = ItemProtectionEnchantment.MIN_LEVEL;
 
         @Comment("Experience cost used when enchanting with an anvil")
-        @BoundedDiscrete(min = 0, max = 99)
+        @BoundedDiscrete(min = 0, max = 80)
         public int anvilCost = ItemProtectionEnchantment.ANVIL_COST;
 
         @Comment("Relative chance of the enchantment being offered")
