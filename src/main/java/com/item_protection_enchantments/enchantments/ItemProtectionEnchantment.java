@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 
-import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
 public class ItemProtectionEnchantment extends Enchantment {
@@ -29,7 +28,6 @@ public class ItemProtectionEnchantment extends Enchantment {
         return MAX_COST;
     }
 
-    @Nonnull
     @Override
     public Rarity getRarity() {
         return Rarity.VERY_RARE;
