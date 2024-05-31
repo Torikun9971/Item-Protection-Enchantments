@@ -1,6 +1,8 @@
 package com.item_protection_enchantments.enchantments;
 
 import com.item_protection_enchantments.config.ModConfiguration;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.item.ItemStack;
 
 public class FireProtectionEnchantment extends ItemProtectionEnchantment {
     @Override
@@ -16,5 +18,14 @@ public class FireProtectionEnchantment extends ItemProtectionEnchantment {
     @Override
     public int getWeight() {
         return ModConfiguration.getConfig().fireProtectionEnchantment.weight;
+    }
+
+    @Override
+    public boolean isAcceptableItem(ItemStack stack) {
+        if (super.isAcceptableItem(stack)) {
+            return !stack.getComponents().contains(DataComponentTypes.FIRE_RESISTANT);
+        }
+
+        return false;
     }
 }
