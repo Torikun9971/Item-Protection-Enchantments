@@ -43,7 +43,7 @@ public class ModConfiguration implements ConfigData {
 
         @Comment("Relative chance of the enchantment being offered")
         @BoundedDiscrete(min = 0, max = 10)
-        public int weight = 1;
+        public int weight = ItemProtectionEnchantment.WEIGHT;
 
         @Comment("Should items glow when submerged in lava?")
         public boolean glow = false;
@@ -60,7 +60,7 @@ public class ModConfiguration implements ConfigData {
 
         @Comment("Relative chance of the enchantment being offered")
         @BoundedDiscrete(min = 0, max = 10)
-        public int weight = 1;
+        public int weight = ItemProtectionEnchantment.WEIGHT;
     }
 
     public static class BlastProtectionEnchantment {
@@ -74,7 +74,7 @@ public class ModConfiguration implements ConfigData {
 
         @Comment("Relative chance of the enchantment being offered")
         @BoundedDiscrete(min = 0, max = 10)
-        public int weight = 1;
+        public int weight = ItemProtectionEnchantment.WEIGHT;
     }
 
     public static class VoidProtectionEnchantment {
@@ -88,7 +88,7 @@ public class ModConfiguration implements ConfigData {
 
         @Comment("Relative chance of the enchantment being offered")
         @BoundedDiscrete(min = 0, max = 10)
-        public int weight = 1;
+        public int weight = ItemProtectionEnchantment.WEIGHT;
 
         @Comment("Should the item glow when it falls into the void?")
         public boolean glow = true;
@@ -105,7 +105,7 @@ public class ModConfiguration implements ConfigData {
 
         @Comment("Relative chance of the enchantment being offered")
         @BoundedDiscrete(min = 0, max = 10)
-        public int weight = 1;
+        public int weight = ItemProtectionEnchantment.WEIGHT;
     }
 
     public static ModConfiguration getConfig() {
