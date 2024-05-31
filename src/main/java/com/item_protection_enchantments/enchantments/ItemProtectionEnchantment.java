@@ -9,7 +9,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
 public class ItemProtectionEnchantment extends Enchantment {
@@ -30,7 +29,6 @@ public class ItemProtectionEnchantment extends Enchantment {
         return MAX_COST;
     }
 
-    @Nonnull
     @Override
     public Rarity getRarity() {
         return Rarity.VERY_RARE;
