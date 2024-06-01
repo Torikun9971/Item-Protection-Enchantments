@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "protection_enchantments",
+  "id": "${mod_id}",
   "version": "${version}",
   "custom": {
     "modmenu": {
@@ -19,7 +19,7 @@
     "issues": "https://github.com/Torikun9971/Item-Protection-Enchantments/issues"
   },
   "license": "LGPL-3.0",
-  "icon": "assets/protection_enchantments/icon.png",
+  "icon": "assets/${mod_id}/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -34,14 +34,14 @@
     ]
   },
   "mixins": [
-    "protection_enchantments.mixins.json"
+    "${mod_id}.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.0",
-    "fabric-api": ">=0.95.0",
-    "minecraft": "~1.20.4",
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "minecraft": "~${minecraft_version}",
     "java": ">=17",
-    "cloth-config": ">=13.0.112"
+    "cloth-config": ">=${cloth_config_version}"
   },
   "suggests": {
     "modmenu": "*"
