@@ -3,11 +3,11 @@ plugins {
     id 'maven-publish'
 }
 
-version = "${project.minecraft_version}-${project.mod_loader}-${project.mod_version}"
+version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name
+    archivesName = "${project.archives_base_name}-${project.minecraft_version}-${project.mod_loader}"
 }
 
 repositories {
@@ -21,7 +21,11 @@ repositories {
 }
 
 loom {
-    accessWidenerPath = file('src/main/resources/protection_enchantments.accesswidener')
+    mixin {
+        defaultRefmapName = "${project.mod_id}.refmap.json"
+    }
+
+    accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
 }
 
 dependencies {
@@ -29,7 +33,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
@@ -47,7 +51,10 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "mod_id": project.mod_id,
+                "fabric_api_version": project.fabric_api_version,
+                "cloth_config_version": project.cloth_config_version
     }
 }
 

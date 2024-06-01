@@ -3,8 +3,10 @@
   "minVersion": "0.8",
   "package": "com.item_protection_enchantments.mixins",
   "compatibilityLevel": "JAVA_21",
+  "refmap": "protection_enchantments.refmap.json",
   "mixins": [
     "CactusBlockMixin",
+    "EnchantmentHelperMixin",
     "EntityMixin",
     "ItemEntityMixin"
   ],
