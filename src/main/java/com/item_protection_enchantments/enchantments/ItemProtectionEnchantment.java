@@ -1,6 +1,5 @@
 package com.item_protection_enchantments.enchantments;
 
-import com.item_protection_enchantments.config.ModConfiguration;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -33,20 +32,19 @@ public class ItemProtectionEnchantment extends Enchantment {
         return Rarity.VERY_RARE;
     }
 
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        if (ModConfiguration.ENCHANTABLE_ITEMS.get().getPredicate() != null) {
-            return ModConfiguration.ENCHANTABLE_ITEMS.get().getPredicate().test(stack.getItem());
+    public boolean canEnchant(ItemStack stack, EnchantmentCategories category) {
+        if (category.getPredicate() != null) {
+            return category.getPredicate().test(stack.getItem());
         }
 
         return false;
     }
 
     public enum EnchantmentCategories {
-        ALL_ITEMS("all_items", (item) -> item instanceof Item),
+        ALL_ITEMS("all_items", (item) -> true),
 
         ITEMS_AND_COMPATIBLE_BLOCKS("items_and_compatible_blocks", (item) -> {
-            if (item instanceof Item && !(item instanceof BlockItem)) {
+            if (!(item instanceof BlockItem)) {
                 return true;
             }
 
@@ -57,6 +55,14 @@ public class ItemProtectionEnchantment extends Enchantment {
             }
 
             return false;
+        }),
+
+        ITEMS_ONLY("items_only", (item) -> {
+            if (item instanceof BlockItem) {
+                return false;
+            }
+
+            return true;
         });
 
         private final Predicate<Item> predicate;
