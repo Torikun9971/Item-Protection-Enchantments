@@ -16,10 +16,20 @@ public class FireProtectionEnchantment extends ItemProtectionEnchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        if (super.canEnchant(stack)) {
+        if (canEnchant(stack, ModConfiguration.FIRE_PROTECTION_ENCHANTABLE_ITEMS.get())) {
             return !stack.getItem().isFireResistant();
         }
 
         return false;
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfiguration.FIRE_PROTECTION_TREASURE_ENCHANTMENT.get();
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return ModConfiguration.FIRE_PROTECTION_TRADEABLE.get();
     }
 }
