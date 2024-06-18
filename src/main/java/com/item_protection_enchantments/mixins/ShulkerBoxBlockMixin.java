@@ -4,62 +4,31 @@ import com.item_protection_enchantments.blockentities.EnchantableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
-
 @Mixin(ShulkerBoxBlock.class)
-public abstract class ShulkerBoxBlockMixin extends BaseEntityBlock {
-    @Shadow
-    @Nullable
-    public abstract DyeColor getColor();
+public abstract class ShulkerBoxBlockMixin {
+    @Redirect(method = "playerWillDestroy", at = @At(value = "NEW", target = "(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/item/ItemEntity;", ordinal = 0))
+    private ItemEntity protection_enchantments$playerWillDestroy(Level level, double x, double y, double z, ItemStack stack) {
+        BlockEntity blockEntity = level.getBlockEntity(new BlockPos(x, y, z));
 
-    public ShulkerBoxBlockMixin(Properties properties) {
-        super(properties);
-    }
-
-    @Inject(method = "playerWillDestroy", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player, CallbackInfo ci) {
-        BlockEntity blockentity = level.getBlockEntity(pos);
-        if (blockentity instanceof ShulkerBoxBlockEntity) {
-            ShulkerBoxBlockEntity shulkerboxblockentity = (ShulkerBoxBlockEntity)blockentity;
-            if (!level.isClientSide && player.isCreative() && !shulkerboxblockentity.isEmpty()) {
-                ItemStack itemstack = ShulkerBoxBlock.getColoredItemStack(this.getColor());
-                blockentity.saveToItem(itemstack);
-                if (shulkerboxblockentity.hasCustomName()) {
-                    itemstack.setHoverName(shulkerboxblockentity.getCustomName());
-                }
-
-                if (blockentity instanceof EnchantableBlock enchantableBlock) {
-                    if (enchantableBlock.getEnchantmentTag() != null) {
-                        itemstack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
-                    }
-                }
-
-                ItemEntity itementity = new ItemEntity(level, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack);
-                itementity.setDefaultPickUpDelay();
-                level.addFreshEntity(itementity);
-            } else {
-                shulkerboxblockentity.unpackLootTable(player);
+        if (blockEntity instanceof EnchantableBlock enchantableBlock) {
+            if (enchantableBlock.getEnchantmentTag() != null) {
+                stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
             }
         }
 
-        super.playerWillDestroy(level, pos, state, player);
-        ci.cancel();
+        return new ItemEntity(level, x, y, z, stack);
     }
 
     @Inject(method = "setPlacedBy", at = @At("HEAD"))
