@@ -15,4 +15,5 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> BLAST_PROTECTION_ITEM = ENCHANTMENTS.register("blast_protection_item", BlastProtectionEnchantment::new);
     public static final RegistryObject<Enchantment> VOID_PROTECTION_ITEM = ENCHANTMENTS.register("void_protection_item", VoidProtectionEnchantment::new);
     public static final RegistryObject<Enchantment> EXPIRE_PROTECTION_ITEM = ENCHANTMENTS.register("expire_protection_item", ExpireProtectionEnchantment::new);
+    public static final RegistryObject<Enchantment> INVENTORY_HOLDING = ENCHANTMENTS.register("inventory_holding", InventoryHoldingEnchantment::new);
 }

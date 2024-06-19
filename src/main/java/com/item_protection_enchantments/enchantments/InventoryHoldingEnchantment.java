@@ -3,29 +3,29 @@ package com.item_protection_enchantments.enchantments;
 import com.item_protection_enchantments.config.ModConfiguration;
 import net.minecraft.item.ItemStack;
 
-public class ExpireProtectionEnchantment extends ItemProtectionEnchantment {
+public class InventoryHoldingEnchantment extends ItemProtectionEnchantment {
     @Override
     public int getMinCost(int enchantmentLevel) {
-        return ModConfiguration.EXPIRE_PROTECTION_MIN_COST.get();
+        return ModConfiguration.INVENTORY_HOLDING_MIN_COST.get();
     }
 
     @Override
     public Rarity getRarity() {
-        return ModConfiguration.EXPIRE_PROTECTION_RARITY.get();
+        return ModConfiguration.INVENTORY_HOLDING_RARITY.get();
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return canEnchant(stack, ModConfiguration.EXPIRE_PROTECTION_ENCHANTABLE_ITEMS.get());
+        return canEnchant(stack, ModConfiguration.INVENTORY_HOLDING_ENCHANTABLE_ITEMS.get());
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfiguration.EXPIRE_PROTECTION_TREASURE_ENCHANTMENT.get();
+        return ModConfiguration.INVENTORY_HOLDING_TREASURE_ENCHANTMENT.get();
     }
 
     @Override
     public boolean isTradeable() {
-        return ModConfiguration.EXPIRE_PROTECTION_TRADEABLE.get();
+        return ModConfiguration.INVENTORY_HOLDING_TRADEABLE.get();
     }
 }

@@ -17,10 +17,20 @@ public class BlastProtectionEnchantment extends ItemProtectionEnchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        if (super.canEnchant(stack)) {
+        if (canEnchant(stack, ModConfiguration.BLAST_PROTECTION_ENCHANTABLE_ITEMS.get())) {
             return stack.getItem() != Items.NETHER_STAR;
         }
 
         return false;
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfiguration.BLAST_PROTECTION_TREASURE_ENCHANTMENT.get();
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return ModConfiguration.BLAST_PROTECTION_TRADEABLE.get();
     }
 }

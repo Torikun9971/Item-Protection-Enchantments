@@ -1,6 +1,5 @@
 package com.item_protection_enchantments.enchantments;
 
-import com.item_protection_enchantments.config.ModConfiguration;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
@@ -16,7 +15,7 @@ public class ItemProtectionEnchantment extends Enchantment {
     public static final int MAX_COST = 50;
 
     public ItemProtectionEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTypes.ALL_ITEMS.getEnchantmentCategory(), EquipmentSlotType.values());
+        super(Rarity.VERY_RARE, EnchantmentTypes.ALL_ITEMS.getEnchantmentType(), EquipmentSlotType.values());
     }
 
     @Override
@@ -34,20 +33,19 @@ public class ItemProtectionEnchantment extends Enchantment {
         return Rarity.VERY_RARE;
     }
 
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        if (ModConfiguration.ENCHANTABLE_ITEMS.get().getPredicate() != null) {
-            return ModConfiguration.ENCHANTABLE_ITEMS.get().getPredicate().test(stack.getItem());
+    public boolean canEnchant(ItemStack stack, EnchantmentTypes category) {
+        if (category.getPredicate() != null) {
+            return category.getPredicate().test(stack.getItem());
         }
 
         return false;
     }
 
     public enum EnchantmentTypes {
-        ALL_ITEMS("all_items", (item) -> item instanceof Item),
+        ALL_ITEMS("all_items", (item) -> true),
 
         ITEMS_AND_COMPATIBLE_BLOCKS("items_and_compatible_blocks", (item) -> {
-            if (item instanceof Item && !(item instanceof BlockItem)) {
+            if (!(item instanceof BlockItem)) {
                 return true;
             }
 
@@ -60,6 +58,14 @@ public class ItemProtectionEnchantment extends Enchantment {
             }
 
             return false;
+        }),
+
+        ITEMS_ONLY("items_only", (item) -> {
+            if (item instanceof BlockItem) {
+                return false;
+            }
+
+            return true;
         });
 
         private final Predicate<Item> predicate;
@@ -74,7 +80,7 @@ public class ItemProtectionEnchantment extends Enchantment {
             return predicate;
         }
 
-        public EnchantmentType getEnchantmentCategory() {
+        public EnchantmentType getEnchantmentType() {
             return type;
         }
     }

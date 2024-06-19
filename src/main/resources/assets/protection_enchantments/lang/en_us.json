@@ -3,5 +3,6 @@
   "enchantment.protection_enchantments.cactus_protection_item": "Cactus Protection (Item)",
   "enchantment.protection_enchantments.blast_protection_item": "Blast Protection (Item)",
   "enchantment.protection_enchantments.void_protection_item": "Void Protection (Item)",
-  "enchantment.protection_enchantments.expire_protection_item": "Expire Protection (Item)"
+  "enchantment.protection_enchantments.expire_protection_item": "Expire Protection (Item)",
+  "enchantment.protection_enchantments.inventory_holding": "Inventory Holding"
 }

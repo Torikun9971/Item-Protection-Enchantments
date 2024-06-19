@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "protection_enchantments.refmap.json",
   "mixins": [
-    "AbstractFireBlockMixin",
     "CactusBlockMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
+    "FallingBlockEntityMixin",
     "ItemEntityMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
     "ShulkerBoxBlockMixin",
     "ShulkerBoxTileEntityMixin"
   ],

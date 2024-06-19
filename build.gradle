@@ -20,7 +20,7 @@ group = mod_group_id
 version = mod_version
 
 base {
-    archivesName.set("$mod_file_name-$minecraft_version-$mod_loader")
+    archivesName.set("${mod_file_name}-${minecraft_version}-${mod_loader}")
 }
 
 java {
@@ -29,6 +29,8 @@ java {
 
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     copyIdeResources = true
 
