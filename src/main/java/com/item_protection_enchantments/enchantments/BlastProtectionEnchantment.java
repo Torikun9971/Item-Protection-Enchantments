@@ -17,10 +17,20 @@ public class BlastProtectionEnchantment extends ItemProtectionEnchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        if (super.isAcceptableItem(stack)) {
+        if (isAcceptableItem(stack, ModConfiguration.getConfig().blastProtectionEnchantment.enchantableItems)) {
             return stack.getItem() != Items.NETHER_STAR;
         }
 
         return false;
+    }
+
+    @Override
+    public boolean isTreasure() {
+        return ModConfiguration.getConfig().blastProtectionEnchantment.treasureEnchantment;
+    }
+
+    @Override
+    public boolean isAvailableForEnchantedBookOffer() {
+        return ModConfiguration.getConfig().blastProtectionEnchantment.tradeable;
     }
 }

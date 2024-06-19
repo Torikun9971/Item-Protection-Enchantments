@@ -1,6 +1,5 @@
 package com.item_protection_enchantments.enchantments;
 
-import com.item_protection_enchantments.config.ModConfiguration;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -34,20 +33,19 @@ public class ItemProtectionEnchantment extends Enchantment {
         return Rarity.VERY_RARE;
     }
 
-    @Override
-    public boolean isAcceptableItem(ItemStack stack) {
-        if (ModConfiguration.getConfig().enchantableItems.getPredicate() != null) {
-            return ModConfiguration.getConfig().enchantableItems.getPredicate().test(stack.getItem());
+    public boolean isAcceptableItem(ItemStack stack, EnchantmentTargetPredicates predicate) {
+        if (predicate.getPredicate() != null) {
+            return predicate.getPredicate().test(stack.getItem());
         }
 
         return false;
     }
 
     public enum EnchantmentTargetPredicates {
-        ALL_ITEMS((item) -> item instanceof Item),
+        ALL_ITEMS((item) -> true),
 
         ITEMS_AND_COMPATIBLE_BLOCKS((item) -> {
-            if (item instanceof Item && !(item instanceof BlockItem)) {
+            if (!(item instanceof BlockItem)) {
                 return true;
             }
 
@@ -58,6 +56,14 @@ public class ItemProtectionEnchantment extends Enchantment {
             }
 
             return false;
+        }),
+
+        ITEMS_ONLY((item) -> {
+            if (item instanceof BlockItem) {
+                return false;
+            }
+
+            return true;
         });
 
         private final Predicate<Item> predicate;
