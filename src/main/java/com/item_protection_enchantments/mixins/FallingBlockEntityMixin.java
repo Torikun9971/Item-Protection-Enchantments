@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Mixin(FallingBlockEntity.class)
-public class FallingBlockEntityMixin {
+public abstract class FallingBlockEntityMixin {
     @Redirect(method = "causeFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getEntities(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;", ordinal = 0))
     private List<Entity> protection_enchantments$causeFallDamage(Level level, Entity entity, AABB aabb, Predicate<? super Entity> predicate) {
         DamageSource damageSource = DamageSource.FALLING_BLOCK;
