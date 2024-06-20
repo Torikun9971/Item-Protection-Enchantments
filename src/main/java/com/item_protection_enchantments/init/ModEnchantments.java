@@ -13,6 +13,7 @@ public class ModEnchantments {
     public static Enchantment BLAST_PROTECTION_ITEM;
     public static Enchantment VOID_PROTECTION_ITEM;
     public static Enchantment EXPIRE_PROTECTION_ITEM;
+    public static Enchantment INVENTORY_HOLDING;
 
     public static void init() {
         FIRE_PROTECTION_ITEM = Registry.register(Registries.ENCHANTMENT, new Identifier(ItemProtectionEnchantments.MOD_ID, "fire_protection_item"), new FireProtectionEnchantment());
@@ -20,5 +21,6 @@ public class ModEnchantments {
         BLAST_PROTECTION_ITEM = Registry.register(Registries.ENCHANTMENT, new Identifier(ItemProtectionEnchantments.MOD_ID, "blast_protection_item"), new BlastProtectionEnchantment());
         VOID_PROTECTION_ITEM = Registry.register(Registries.ENCHANTMENT, new Identifier(ItemProtectionEnchantments.MOD_ID, "void_protection_item"), new VoidProtectionEnchantment());
         EXPIRE_PROTECTION_ITEM = Registry.register(Registries.ENCHANTMENT, new Identifier(ItemProtectionEnchantments.MOD_ID, "expire_protection_item"), new ExpireProtectionEnchantment());
+        INVENTORY_HOLDING = Registry.register(Registries.ENCHANTMENT, new Identifier(ItemProtectionEnchantments.MOD_ID, "inventory_holding"), new InventoryHoldingEnchantment());
     }
 }

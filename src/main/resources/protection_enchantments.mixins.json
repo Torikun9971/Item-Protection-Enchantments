@@ -9,6 +9,8 @@
     "EnchantmentHelperMixin",
     "EntityMixin",
     "ItemEntityMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
     "ShulkerBoxBlockEntityMixin",
     "ShulkerBoxBlockMixin"
   ],

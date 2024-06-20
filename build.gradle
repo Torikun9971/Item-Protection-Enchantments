@@ -24,6 +24,8 @@ loom {
     mixin {
         defaultRefmapName = "${project.mod_id}.refmap.json"
     }
+
+    accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
 }
 
 dependencies {

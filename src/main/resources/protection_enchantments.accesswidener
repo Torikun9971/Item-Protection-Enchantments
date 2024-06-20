@@ -1,0 +1,3 @@
+accessWidener v1 named
+accessible field net/minecraft/entity/player/PlayerEntity inventory Lnet/minecraft/entity/player/PlayerInventory;
+accessible field net/minecraft/entity/player/PlayerInventory combinedInventory Ljava/util/List;

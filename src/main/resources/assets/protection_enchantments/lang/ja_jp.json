@@ -4,24 +4,54 @@
   "enchantment.protection_enchantments.blast_protection_item": "爆発耐性 (アイテム)",
   "enchantment.protection_enchantments.void_protection_item": "奈落耐性 (アイテム)",
   "enchantment.protection_enchantments.expire_protection_item": "時間耐性 (アイテム)",
+  "enchantment.protection_enchantments.inventory_holding": "保持",
 
   "modmenu.descriptionTranslation.protection_enchantments": "アイテムを保護するエンチャントを追加します",
-  "text.autoconfig.protection_enchantments.option.enchantableItems": "エンチャント可能なアイテム",
+
   "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment": "火炎耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.enchantableItems": "エンチャント可能なアイテム",
   "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.minimumPower": "最小経験値",
   "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.treasureEnchantment": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.tradeable": "取引可能",
   "text.autoconfig.protection_enchantments.option.fireProtectionEnchantment.glow": "発光",
+
   "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment": "サボテン耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.enchantableItems": "エンチャント可能なアイテム",
   "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.minimumPower": "最小経験値",
   "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.treasureEnchantment": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.cactusProtectionEnchantment.tradeable": "取引可能",
+
   "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment": "爆発耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.enchantableItems": "エンチャント可能なアイテム",
   "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.minimumPower": "最小経験値",
   "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.treasureEnchantment": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.blastProtectionEnchantment.tradeable": "取引可能",
+
   "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment": "奈落耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.enchantableItems": "エンチャント可能なアイテム",
   "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.minimumPower": "最小経験値",
   "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.treasureEnchantment": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.tradeable": "取引可能",
   "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.glow": "発光",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.protectionHeight": "保護する高度",
+  "text.autoconfig.protection_enchantments.option.voidProtectionEnchantment.protectedHeight": "保護後の高度",
+
   "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment": "時間耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.enchantableItems": "エンチャント可能なアイテム",
   "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.minimumPower": "最小経験値",
-  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.rarity": "レアリティ"
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.treasureEnchantment": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.expireProtectionEnchantment.tradeable": "取引可能",
+
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment": "保持",
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment.enchantableItems": "エンチャント可能なアイテム",
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment.minimumPower": "最小経験値",
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment.treasureEnchantment": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment.tradeable": "取引可能",
+  "text.autoconfig.protection_enchantments.option.inventoryHoldingEnchantment.disableVanishingCurse": "消滅の呪いを無効化"
 }
