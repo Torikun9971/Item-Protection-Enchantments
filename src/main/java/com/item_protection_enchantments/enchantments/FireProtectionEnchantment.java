@@ -22,10 +22,20 @@ public class FireProtectionEnchantment extends ItemProtectionEnchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        if (super.isAcceptableItem(stack)) {
+        if (isAcceptableItem(stack, ModConfiguration.getConfig().fireProtectionEnchantment.enchantableItems)) {
             return !stack.getComponents().contains(DataComponentTypes.FIRE_RESISTANT);
         }
 
         return false;
+    }
+
+    @Override
+    public boolean isTreasure() {
+        return ModConfiguration.getConfig().fireProtectionEnchantment.treasureEnchantment;
+    }
+
+    @Override
+    public boolean isAvailableForEnchantedBookOffer() {
+        return ModConfiguration.getConfig().fireProtectionEnchantment.tradeable;
     }
 }

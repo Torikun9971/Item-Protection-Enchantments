@@ -3,3 +3,6 @@ extendable method net/minecraft/enchantment/Enchantment getWeight ()I
 extendable method net/minecraft/enchantment/Enchantment getAnvilCost ()I
 extendable method net/minecraft/enchantment/Enchantment getMinPower (I)I
 extendable method net/minecraft/enchantment/Enchantment getMaxPower (I)I
+
+accessible field net/minecraft/entity/player/PlayerEntity inventory Lnet/minecraft/entity/player/PlayerInventory;
+accessible field net/minecraft/entity/player/PlayerInventory combinedInventory Ljava/util/List;

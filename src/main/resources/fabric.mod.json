@@ -7,7 +7,7 @@
       "update_checker": true
     }
   },
-  "accessWidener": "protection_enchantments.accesswidener",
+  "accessWidener": "${mod_id}.accesswidener",
 
   "name": "Item Protection Enchantments",
   "description": "Adds Item Protection Enchantments",

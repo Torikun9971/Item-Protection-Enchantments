@@ -8,7 +8,9 @@
     "CactusBlockMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
-    "ItemEntityMixin"
+    "ItemEntityMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin"
   ],
   "client": [
   ],
