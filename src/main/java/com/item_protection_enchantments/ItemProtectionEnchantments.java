@@ -6,16 +6,15 @@ import com.item_protection_enchantments.init.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
 import java.util.Locale;
@@ -26,20 +25,18 @@ public class ItemProtectionEnchantments {
     public static final String MOD_ID = "protection_enchantments";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public ItemProtectionEnchantments() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        ModEnchantments.ENCHANTMENTS.register(modEventBus);
-        ModLootFunctionTypes.LOOT_FUNCTION_TYPES.register(modEventBus);
+    public ItemProtectionEnchantments(IEventBus eventBus) {
+        ModEnchantments.ENCHANTMENTS.register(eventBus);
+        ModLootFunctionTypes.LOOT_FUNCTION_TYPES.register(eventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_CONFIG, String.format(Locale.ROOT, "%s.toml", MOD_ID));
 
-        modEventBus.addListener(this::setup);
-        modEventBus.addListener(this::setupClient);
+        eventBus.addListener(this::setup);
+        eventBus.addListener(this::setupClient);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        IEventBus modEventBus = MinecraftForge.EVENT_BUS;
+        IEventBus modEventBus = NeoForge.EVENT_BUS;
         modEventBus.register(new ItemProtectionEvent());
     }
 
