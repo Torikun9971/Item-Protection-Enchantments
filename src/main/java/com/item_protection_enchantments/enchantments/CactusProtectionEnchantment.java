@@ -10,8 +10,13 @@ public class CactusProtectionEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.CACTUS_PROTECTION_RARITY.get();
+    public int getAnvilCost() {
+        return ModConfiguration.CACTUS_PROTECTION_ANVIL_COST.get();
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.CACTUS_PROTECTION_WEIGHT.get();
     }
 
     @Override

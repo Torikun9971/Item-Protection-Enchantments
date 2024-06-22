@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(CactusBlock.class)
 public abstract class CactusBlockMixin {
     @Inject(method = "entityInside", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$entityInside(BlockState state, Level level, BlockPos pos, Entity entity, CallbackInfo ci) {
+    protected void protection_enchantments$entityInside(BlockState state, Level level, BlockPos pos, Entity entity, CallbackInfo ci) {
         if (entity instanceof ItemEntity itemEntity && ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.CACTUS_PROTECTION_ITEM.get())) {
             ci.cancel();
         }

@@ -1,50 +1,57 @@
 package com.item_protection_enchantments.enchantments;
 
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 
 import java.util.function.Predicate;
 
 public class ItemProtectionEnchantment extends Enchantment {
-    public static final int MIN_COST = 30;
-    public static final int MAX_COST = 50;
+    public static final int WEIGHT = 1;
+    public static final int ANVIL_COST = 8;
+    public static final int MIN_LEVEL = 30;
+    public static final int MAX_LEVEL = 50;
 
     public ItemProtectionEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentCategories.ALL_ITEMS.getEnchantmentCategory(), EquipmentSlot.values());
+        super(Enchantment.definition(ItemTags.AXES, WEIGHT, 1, Enchantment.constantCost(MIN_LEVEL), Enchantment.constantCost(MAX_LEVEL), ANVIL_COST, EquipmentSlot.values()));
+    }
+
+    @Override
+    public int getWeight() {
+        return WEIGHT;
+    }
+
+    @Override
+    public int getAnvilCost() {
+        return ANVIL_COST;
     }
 
     @Override
     public int getMinCost(int enchantmentLevel) {
-        return MIN_COST;
+        return MIN_LEVEL;
     }
 
     @Override
     public int getMaxCost(int enchantmentLevel) {
-        return MAX_COST;
+        return MAX_LEVEL;
     }
 
-    @Override
-    public Rarity getRarity() {
-        return Rarity.VERY_RARE;
-    }
-
-    public boolean canEnchant(ItemStack stack, EnchantmentCategories category) {
-        if (category.getPredicate() != null) {
-            return category.getPredicate().test(stack.getItem());
+    public boolean canEnchant(ItemStack stack, EnchantmentPredicates predicate) {
+        if (predicate.getPredicate() != null) {
+            return predicate.getPredicate().test(stack.getItem());
         }
 
         return false;
     }
 
-    public enum EnchantmentCategories {
-        ALL_ITEMS("all_items", (item) -> true),
+    public enum EnchantmentPredicates {
+        ALL_ITEMS((item) -> true),
 
-        ITEMS_AND_COMPATIBLE_BLOCKS("items_and_compatible_blocks", (item) -> {
+        ITEMS_AND_COMPATIBLE_BLOCKS((item) -> {
             if (!(item instanceof BlockItem)) {
                 return true;
             }
@@ -58,7 +65,7 @@ public class ItemProtectionEnchantment extends Enchantment {
             return false;
         }),
 
-        ITEMS_ONLY("items_only", (item) -> {
+        ITEMS_ONLY((item) -> {
             if (item instanceof BlockItem) {
                 return false;
             }
@@ -67,19 +74,13 @@ public class ItemProtectionEnchantment extends Enchantment {
         });
 
         private final Predicate<Item> predicate;
-        private final EnchantmentCategory category;
 
-        EnchantmentCategories(String name, Predicate<Item> predicate) {
+        EnchantmentPredicates(Predicate<Item> predicate) {
             this.predicate = predicate;
-            this.category = EnchantmentCategory.create(name, predicate);
         }
 
         public Predicate<Item> getPredicate() {
             return predicate;
-        }
-
-        public EnchantmentCategory getEnchantmentCategory() {
-            return category;
         }
     }
 }

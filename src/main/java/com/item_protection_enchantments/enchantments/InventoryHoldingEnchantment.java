@@ -10,8 +10,13 @@ public class InventoryHoldingEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.INVENTORY_HOLDING_RARITY.get();
+    public int getAnvilCost() {
+        return ModConfiguration.INVENTORY_HOLDING_ANVIL_COST.get();
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.INVENTORY_HOLDING_WEIGHT.get();
     }
 
     @Override

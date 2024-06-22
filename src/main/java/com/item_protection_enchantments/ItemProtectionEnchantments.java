@@ -6,6 +6,7 @@ import com.item_protection_enchantments.init.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,7 +20,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 import java.util.Locale;
-import java.util.Map;
 
 @Mod(ItemProtectionEnchantments.MOD_ID)
 public class ItemProtectionEnchantments {
@@ -30,7 +30,6 @@ public class ItemProtectionEnchantments {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEnchantments.ENCHANTMENTS.register(modEventBus);
-        ModLootFunctionTypes.LOOT_FUNCTION_TYPES.register(modEventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_CONFIG, String.format(Locale.ROOT, "%s.toml", MOD_ID));
 
@@ -49,15 +48,15 @@ public class ItemProtectionEnchantments {
     }
 
     public static boolean hasEnchantment(ItemStack itemStack, boolean mustHaveAll, Enchantment... enchantments) {
-        Map<Enchantment, Integer> enchantmentsMap = itemStack.getAllEnchantments();
-
         for (Enchantment enchantment : enchantments) {
+            int lvl = EnchantmentHelper.getItemEnchantmentLevel(enchantment, itemStack);
+
             if (mustHaveAll) {
-                if (!enchantmentsMap.containsKey(enchantment)) {
+                if (lvl < 1) {
                     return false;
                 }
             } else {
-                if (enchantmentsMap.containsKey(enchantment)) {
+                if (lvl > 0) {
                     return true;
                 }
             }
