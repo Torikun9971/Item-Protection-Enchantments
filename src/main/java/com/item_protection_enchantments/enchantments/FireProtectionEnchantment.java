@@ -1,6 +1,7 @@
 package com.item_protection_enchantments.enchantments;
 
 import com.item_protection_enchantments.config.ModConfiguration;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 
 public class FireProtectionEnchantment extends ItemProtectionEnchantment {
@@ -10,14 +11,19 @@ public class FireProtectionEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.FIRE_PROTECTION_RARITY.get();
+    public int getAnvilCost() {
+        return ModConfiguration.FIRE_PROTECTION_ANVIL_COST.get();
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.FIRE_PROTECTION_WEIGHT.get();
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
         if (canEnchant(stack, ModConfiguration.FIRE_PROTECTION_ENCHANTABLE_ITEMS.get())) {
-            return !stack.getItem().isFireResistant();
+            return !stack.getComponents().has(DataComponents.FIRE_RESISTANT);
         }
 
         return false;

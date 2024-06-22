@@ -10,8 +10,13 @@ public class VoidProtectionEnchantment extends ItemProtectionEnchantment {
     }
 
     @Override
-    public Rarity getRarity() {
-        return ModConfiguration.VOID_PROTECTION_RARITY.get();
+    public int getAnvilCost() {
+        return ModConfiguration.VOID_PROTECTION_ANVIL_COST.get();
+    }
+
+    @Override
+    public int getWeight() {
+        return ModConfiguration.VOID_PROTECTION_WEIGHT.get();
     }
 
     @Override

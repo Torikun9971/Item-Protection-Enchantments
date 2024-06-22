@@ -10,9 +10,7 @@
     "EntityMixin",
     "ItemEntityMixin",
     "PlayerMixin",
-    "ServerPlayerMixin",
-    "ShulkerBoxBlockEntityMixin",
-    "ShulkerBoxBlockMixin"
+    "ServerPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

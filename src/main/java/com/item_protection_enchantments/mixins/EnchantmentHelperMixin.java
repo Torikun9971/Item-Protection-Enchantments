@@ -1,6 +1,7 @@
 package com.item_protection_enchantments.mixins;
 
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
@@ -14,7 +15,7 @@ import java.util.List;
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
     @Inject(method = "selectEnchantment", at = @At("RETURN"), cancellable = true)
-    private static void protection_enchantments$selectEnchantment(RandomSource random, ItemStack stack, int level, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
+    private static void protection_enchantments$selectEnchantment(FeatureFlagSet featureFlagSet, RandomSource random, ItemStack stack, int level, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
         List<EnchantmentInstance> enchantments = cir.getReturnValue();
         boolean hasInvalidEnchantment = true;
 
@@ -22,7 +23,7 @@ public abstract class EnchantmentHelperMixin {
             hasInvalidEnchantment = enchantments.stream().anyMatch((entry) -> !entry.enchantment.canEnchant(stack));
 
             if (hasInvalidEnchantment) {
-                enchantments = EnchantmentHelper.selectEnchantment(random, stack, level, treasureAllowed);
+                enchantments = EnchantmentHelper.selectEnchantment(featureFlagSet, random, stack, level, treasureAllowed);
             }
         }
 
