@@ -13,7 +13,7 @@ Fabric version requires [**Fabric API**](https://modrinth.com/mod/fabric-api) an
 | <p align="center">1.21    | <p align="center">❎* | <p align="center">❎* | <p align="center">❎* |
 | <p align="center">1.20.6  | <p align="center">❎* | <p align="center">❎* | <p align="center">✅  |
 | <p align="center">1.20.4  | <p align="center">❎* | <p align="center">✅  | <p align="center">✅  |
-| <p align="center">1.20.1  | <p align="center">❌  | <p align="center">✅  | <p align="center">✅  |
+| <p align="center">1.20.1  | <p align="center">✅  | <p align="center">✅  | <p align="center">✅  |
 | <p align="center">1.19.2  | <p align="center">❌  | <p align="center">✅  | <p align="center">❌  |
 | <p align="center">1.18.2  | <p align="center">❌  | <p align="center">✅  | <p align="center">❌  |
 | <p align="center">1.17.1  | <p align="center">❌  | <p align="center">❌  | <p align="center">❌  |
