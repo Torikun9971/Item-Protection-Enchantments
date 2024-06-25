@@ -14,6 +14,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
@@ -30,7 +31,10 @@ public class ItemProtectionEnchantments {
         container.registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_CONFIG, String.format(Locale.ROOT, "%s.toml", MOD_ID));
 
         eventBus.addListener(this::setup);
-        eventBus.addListener(this::setupClient);
+
+        if (FMLEnvironment.dist.isClient()) {
+            eventBus.addListener(this::setupClient);
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {
