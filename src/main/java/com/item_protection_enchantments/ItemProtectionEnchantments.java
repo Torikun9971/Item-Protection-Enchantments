@@ -10,6 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -35,7 +36,10 @@ public class ItemProtectionEnchantments {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_CONFIG, String.format(Locale.ROOT, "%s.toml", MOD_ID));
 
         modEventBus.addListener(this::setup);
-        modEventBus.addListener(this::setupClient);
+
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> {
+            modEventBus.addListener(this::setupClient);
+        });
     }
 
     private void setup(final FMLCommonSetupEvent event) {
