@@ -3,9 +3,9 @@ package com.item_protection_enchantments.enchantments.event;
 import com.item_protection_enchantments.ItemProtectionEnchantments;
 import com.item_protection_enchantments.init.ModEnchantments;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraftforge.event.entity.item.ItemExpireEvent;
-import net.minecraftforge.event.level.ExplosionEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 
 public class ItemProtectionEvent {
     @SubscribeEvent

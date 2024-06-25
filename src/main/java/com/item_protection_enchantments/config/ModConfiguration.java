@@ -2,60 +2,60 @@ package com.item_protection_enchantments.config;
 
 import com.item_protection_enchantments.enchantments.ItemProtectionEnchantment;
 import com.item_protection_enchantments.enchantments.VoidProtectionEnchantment;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ModConfiguration {
-    public static final ForgeConfigSpec COMMON_CONFIG;
+    public static final ModConfigSpec COMMON_CONFIG;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> FIRE_PROTECTION_ENCHANTABLE_ITEMS;
-    public static final ForgeConfigSpec.IntValue FIRE_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.IntValue FIRE_PROTECTION_ANVIL_COST;
-    public static final ForgeConfigSpec.IntValue FIRE_PROTECTION_WEIGHT;
-    public static final ForgeConfigSpec.BooleanValue FIRE_PROTECTION_TREASURE_ENCHANTMENT;
-    public static final ForgeConfigSpec.BooleanValue FIRE_PROTECTION_TRADEABLE;
-    public static final ForgeConfigSpec.BooleanValue FIRE_PROTECTION_GLOWING_TAG;
+    public static final ModConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> FIRE_PROTECTION_ENCHANTABLE_ITEMS;
+    public static final ModConfigSpec.IntValue FIRE_PROTECTION_MIN_COST;
+    public static final ModConfigSpec.IntValue FIRE_PROTECTION_ANVIL_COST;
+    public static final ModConfigSpec.IntValue FIRE_PROTECTION_WEIGHT;
+    public static final ModConfigSpec.BooleanValue FIRE_PROTECTION_TREASURE_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue FIRE_PROTECTION_TRADEABLE;
+    public static final ModConfigSpec.BooleanValue FIRE_PROTECTION_GLOWING_TAG;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> CACTUS_PROTECTION_ENCHANTABLE_ITEMS;
-    public static final ForgeConfigSpec.IntValue CACTUS_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.IntValue CACTUS_PROTECTION_ANVIL_COST;
-    public static final ForgeConfigSpec.IntValue CACTUS_PROTECTION_WEIGHT;
-    public static final ForgeConfigSpec.BooleanValue CACTUS_PROTECTION_TREASURE_ENCHANTMENT;
-    public static final ForgeConfigSpec.BooleanValue CACTUS_PROTECTION_TRADEABLE;
+    public static final ModConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> CACTUS_PROTECTION_ENCHANTABLE_ITEMS;
+    public static final ModConfigSpec.IntValue CACTUS_PROTECTION_MIN_COST;
+    public static final ModConfigSpec.IntValue CACTUS_PROTECTION_ANVIL_COST;
+    public static final ModConfigSpec.IntValue CACTUS_PROTECTION_WEIGHT;
+    public static final ModConfigSpec.BooleanValue CACTUS_PROTECTION_TREASURE_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue CACTUS_PROTECTION_TRADEABLE;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> BLAST_PROTECTION_ENCHANTABLE_ITEMS;
-    public static final ForgeConfigSpec.IntValue BLAST_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.IntValue BLAST_PROTECTION_ANVIL_COST;
-    public static final ForgeConfigSpec.IntValue BLAST_PROTECTION_WEIGHT;
-    public static final ForgeConfigSpec.BooleanValue BLAST_PROTECTION_TREASURE_ENCHANTMENT;
-    public static final ForgeConfigSpec.BooleanValue BLAST_PROTECTION_TRADEABLE;
+    public static final ModConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> BLAST_PROTECTION_ENCHANTABLE_ITEMS;
+    public static final ModConfigSpec.IntValue BLAST_PROTECTION_MIN_COST;
+    public static final ModConfigSpec.IntValue BLAST_PROTECTION_ANVIL_COST;
+    public static final ModConfigSpec.IntValue BLAST_PROTECTION_WEIGHT;
+    public static final ModConfigSpec.BooleanValue BLAST_PROTECTION_TREASURE_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue BLAST_PROTECTION_TRADEABLE;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> VOID_PROTECTION_ENCHANTABLE_ITEMS;
-    public static final ForgeConfigSpec.IntValue VOID_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.IntValue VOID_PROTECTION_ANVIL_COST;
-    public static final ForgeConfigSpec.IntValue VOID_PROTECTION_WEIGHT;
-    public static final ForgeConfigSpec.BooleanValue VOID_PROTECTION_TREASURE_ENCHANTMENT;
-    public static final ForgeConfigSpec.BooleanValue VOID_PROTECTION_TRADEABLE;
-    public static final ForgeConfigSpec.BooleanValue VOID_PROTECTION_GLOWING_TAG;
-    public static final ForgeConfigSpec.EnumValue<VoidProtectionEnchantment.ProtectionHeights> VOID_PROTECTION_PROTECTION_HEIGHT;
-    public static final ForgeConfigSpec.IntValue VOID_PROTECTION_PROTECTED_HEIGHT;
+    public static final ModConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> VOID_PROTECTION_ENCHANTABLE_ITEMS;
+    public static final ModConfigSpec.IntValue VOID_PROTECTION_MIN_COST;
+    public static final ModConfigSpec.IntValue VOID_PROTECTION_ANVIL_COST;
+    public static final ModConfigSpec.IntValue VOID_PROTECTION_WEIGHT;
+    public static final ModConfigSpec.BooleanValue VOID_PROTECTION_TREASURE_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue VOID_PROTECTION_TRADEABLE;
+    public static final ModConfigSpec.BooleanValue VOID_PROTECTION_GLOWING_TAG;
+    public static final ModConfigSpec.EnumValue<VoidProtectionEnchantment.ProtectionHeights> VOID_PROTECTION_PROTECTION_HEIGHT;
+    public static final ModConfigSpec.IntValue VOID_PROTECTION_PROTECTED_HEIGHT;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> EXPIRE_PROTECTION_ENCHANTABLE_ITEMS;
-    public static final ForgeConfigSpec.IntValue EXPIRE_PROTECTION_MIN_COST;
-    public static final ForgeConfigSpec.IntValue EXPIRE_PROTECTION_ANVIL_COST;
-    public static final ForgeConfigSpec.IntValue EXPIRE_PROTECTION_WEIGHT;
-    public static final ForgeConfigSpec.BooleanValue EXPIRE_PROTECTION_TREASURE_ENCHANTMENT;
-    public static final ForgeConfigSpec.BooleanValue EXPIRE_PROTECTION_TRADEABLE;
+    public static final ModConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> EXPIRE_PROTECTION_ENCHANTABLE_ITEMS;
+    public static final ModConfigSpec.IntValue EXPIRE_PROTECTION_MIN_COST;
+    public static final ModConfigSpec.IntValue EXPIRE_PROTECTION_ANVIL_COST;
+    public static final ModConfigSpec.IntValue EXPIRE_PROTECTION_WEIGHT;
+    public static final ModConfigSpec.BooleanValue EXPIRE_PROTECTION_TREASURE_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue EXPIRE_PROTECTION_TRADEABLE;
 
-    public static final ForgeConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> INVENTORY_HOLDING_ENCHANTABLE_ITEMS;
-    public static final ForgeConfigSpec.IntValue INVENTORY_HOLDING_MIN_COST;
-    public static final ForgeConfigSpec.IntValue INVENTORY_HOLDING_ANVIL_COST;
-    public static final ForgeConfigSpec.IntValue INVENTORY_HOLDING_WEIGHT;
-    public static final ForgeConfigSpec.BooleanValue INVENTORY_HOLDING_TREASURE_ENCHANTMENT;
-    public static final ForgeConfigSpec.BooleanValue INVENTORY_HOLDING_TRADEABLE;
-    public static final ForgeConfigSpec.BooleanValue INVENTORY_HOLDING_DISABLE_VANISHING_CURSE;
+    public static final ModConfigSpec.EnumValue<ItemProtectionEnchantment.EnchantmentPredicates> INVENTORY_HOLDING_ENCHANTABLE_ITEMS;
+    public static final ModConfigSpec.IntValue INVENTORY_HOLDING_MIN_COST;
+    public static final ModConfigSpec.IntValue INVENTORY_HOLDING_ANVIL_COST;
+    public static final ModConfigSpec.IntValue INVENTORY_HOLDING_WEIGHT;
+    public static final ModConfigSpec.BooleanValue INVENTORY_HOLDING_TREASURE_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue INVENTORY_HOLDING_TRADEABLE;
+    public static final ModConfigSpec.BooleanValue INVENTORY_HOLDING_DISABLE_VANISHING_CURSE;
 
     static {
-        ForgeConfigSpec.Builder COMMON_CONFIG_BUILDER = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder COMMON_CONFIG_BUILDER = new ModConfigSpec.Builder();
 
         COMMON_CONFIG_BUILDER.comment("Game Settings");
 
