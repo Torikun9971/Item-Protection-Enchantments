@@ -8,7 +8,7 @@ Fabric version requires [**Fabric API**](https://modrinth.com/mod/fabric-api) an
 
 ## Support
 
-In version 1.21, significant changes were made to enchantments in Minecraft, which will delay the porting process
+In version 1.21, significant changes were made to enchantments in Minecraft, which will delay the porting process  
 If you'd like to help with the porting, please send a pull request!
 
 | 📚                        | NeoForge             | Forge                | Fabric               |
