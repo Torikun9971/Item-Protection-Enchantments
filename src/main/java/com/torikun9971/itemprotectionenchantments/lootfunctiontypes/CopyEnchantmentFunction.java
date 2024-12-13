@@ -1,10 +1,10 @@
-package com.item_protection_enchantments.lootfunctiontypes;
+package com.torikun9971.itemprotectionenchantments.lootfunctiontypes;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import com.item_protection_enchantments.blockentities.EnchantableBlock;
-import com.item_protection_enchantments.init.ModLootFunctionTypes;
+import com.torikun9971.itemprotectionenchantments.blockentities.EnchantableBlock;
+import com.torikun9971.itemprotectionenchantments.init.ModLootFunctionTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -34,10 +34,11 @@ public class CopyEnchantmentFunction extends LootItemConditionalFunction {
     @Override
     protected ItemStack run(ItemStack stack, LootContext context) {
         BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
-        if (blockEntity instanceof EnchantableBlock enchantableBlock) {
-            if (enchantableBlock.getEnchantmentTag() != null) {
-                stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
-            }
+        if (!(blockEntity instanceof EnchantableBlock enchantableBlock))
+            return stack;
+
+        if (enchantableBlock.getEnchantmentTag() != null) {
+            stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
         }
 
         return stack;

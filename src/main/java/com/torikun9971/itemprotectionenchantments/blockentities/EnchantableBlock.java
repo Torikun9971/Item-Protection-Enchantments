@@ -1,4 +1,4 @@
-package com.item_protection_enchantments.blockentities;
+package com.torikun9971.itemprotectionenchantments.blockentities;
 
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.enchantment.Enchantment;
