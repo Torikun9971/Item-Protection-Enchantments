@@ -1,7 +1,7 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.item_protection_enchantments.ItemProtectionEnchantments;
-import com.item_protection_enchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.enchantment.EnchantmentUtil;
+import com.torikun9971.itemprotectionenchantments.enchantment.ModEnchantments;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CactusBlock;
 import net.minecraft.entity.Entity;
@@ -17,7 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class CactusBlockMixin {
     @Inject(method = "onEntityCollision", at = @At("HEAD"), cancellable = true)
     protected void protection_enchantments$onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
-        if (entity instanceof ItemEntity itemEntity && ItemProtectionEnchantments.hasEnchantment(itemEntity.getStack(), true, ModEnchantments.CACTUS_PROTECTION_ITEM)) {
+        if (!(entity instanceof ItemEntity itemEntity))
+            return;
+
+        if (EnchantmentUtil.hasEnchantment(itemEntity.getStack(), true, ModEnchantments.CACTUS_PROTECTION_ITEM)) {
             ci.cancel();
         }
     }

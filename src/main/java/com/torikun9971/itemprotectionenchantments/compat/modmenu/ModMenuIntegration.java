@@ -1,6 +1,6 @@
-package com.item_protection_enchantments.compat.modmenu;
+package com.torikun9971.itemprotectionenchantments.compat.modmenu;
 
-import com.item_protection_enchantments.config.ModConfiguration;
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.autoconfig.AutoConfig;
