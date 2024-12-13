@@ -1,6 +1,6 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.item_protection_enchantments.blockentities.EnchantableBlock;
+import com.torikun9971.itemprotectionenchantments.blockentities.EnchantableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,10 +22,9 @@ public abstract class ShulkerBoxBlockMixin {
     private ItemEntity protection_enchantments$playerWillDestroy(Level level, double x, double y, double z, ItemStack stack) {
         BlockEntity blockEntity = level.getBlockEntity(new BlockPos(Mth.floor(x),Mth.floor(y),Mth.floor(z)));
 
-        if (blockEntity instanceof EnchantableBlock enchantableBlock) {
-            if (enchantableBlock.getEnchantmentTag() != null) {
-                stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
-            }
+        if (blockEntity instanceof EnchantableBlock enchantableBlock &&
+                enchantableBlock.getEnchantmentTag() != null) {
+            stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
         }
 
         return new ItemEntity(level, x, y, z, stack);
