@@ -7,9 +7,9 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public interface EnchantableBlock {
-    void setEnchantments(@Nullable Map<Enchantment, Integer> enchantments);
+    void protection_enchantments$setEnchantments(@Nullable Map<Enchantment, Integer> enchantments);
 
-    Map<Enchantment, Integer> getEnchantments();
+    Map<Enchantment, Integer> protection_enchantments$getEnchantments();
 
-    ListTag getEnchantmentTag();
+    ListTag protection_enchantments$getEnchantmentTag();
 }

@@ -37,8 +37,10 @@ public class CopyEnchantmentFunction extends LootItemConditionalFunction {
         if (!(blockEntity instanceof EnchantableBlock enchantableBlock))
             return stack;
 
-        if (enchantableBlock.getEnchantmentTag() != null) {
-            stack.getOrCreateTag().put("Enchantments", enchantableBlock.getEnchantmentTag());
+        if (enchantableBlock.protection_enchantments$getEnchantmentTag() != null) {
+            stack.getOrCreateTag().put(
+                    "Enchantments", enchantableBlock.protection_enchantments$getEnchantmentTag()
+            );
         }
 
         return stack;

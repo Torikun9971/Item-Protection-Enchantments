@@ -33,7 +33,7 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
     }
 
     @Override
-    public void setEnchantments(@Nullable Map<Enchantment, Integer> enchantments) {
+    public void protection_enchantments$setEnchantments(@Nullable Map<Enchantment, Integer> enchantments) {
         protection_enchantments$enchantmentTag.clear();
 
         if (enchantments == null)
@@ -52,12 +52,12 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
     }
 
     @Override
-    public Map<Enchantment, Integer> getEnchantments() {
+    public Map<Enchantment, Integer> protection_enchantments$getEnchantments() {
         return EnchantmentHelper.deserializeEnchantments(protection_enchantments$enchantmentTag);
     }
 
     @Override
-    public ListTag getEnchantmentTag() {
+    public ListTag protection_enchantments$getEnchantmentTag() {
         return protection_enchantments$enchantmentTag;
     }
 }
