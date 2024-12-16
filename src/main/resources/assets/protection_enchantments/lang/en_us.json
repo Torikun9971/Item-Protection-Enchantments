@@ -116,6 +116,9 @@
   "text.autoconfig.protection_enchantments.option.inventoryHolding.isTradeable": "Tradeable",
   "text.autoconfig.protection_enchantments.option.inventoryHolding.isTradeable.@Tooltip": "Can be obtained through trading with villagers, etc.",
 
-  "text.autoconfig.protection_enchantments.option.inventoryHolding.isDisableVanishingCurse": "Disable Vanishing Curse",
-  "text.autoconfig.protection_enchantments.option.inventoryHolding.isDisableVanishingCurse.@Tooltip": "Disable the vanishing curse if this enchantment is applied"
+  "text.autoconfig.protection_enchantments.option.inventoryHolding.isVanishingCurseDisabled": "Disable Vanishing Curse",
+  "text.autoconfig.protection_enchantments.option.inventoryHolding.isVanishingCurseDisabled.@Tooltip": "Disable the vanishing curse if this enchantment is applied",
+
+  "text.autoconfig.protection_enchantments.option.fixMC120158": "Fix MC-120158",
+  "text.autoconfig.protection_enchantments.option.fixMC120158.@Tooltip": "Fixes a bug (MC-120158) where items and experience orbs disappear\nwhen they are under a falling block with HurtEntities set to true"
 }
