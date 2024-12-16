@@ -27,10 +27,9 @@ public abstract class PlayerEntityMixin {
 
             if (!EnchantmentHelper.hasAnyEnchantmentsWith(itemStack, EnchantmentEffectComponentTypes.PREVENT_EQUIPMENT_DROP)) continue;
 
-            if (
-                    EnchantmentUtil.hasEnchantment(itemStack, true, ModEnchantments.INVENTORY_HOLDING) &&
-                    ModConfiguration.getConfig().inventoryHolding.isDisableVanishingCurse
-            ) continue;
+            if (EnchantmentUtil.hasEnchantment(itemStack, true, ModEnchantments.INVENTORY_HOLDING) &&
+                    ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
+                continue;
 
             player.inventory.removeStack(i);
         }
@@ -44,7 +43,8 @@ public abstract class PlayerEntityMixin {
 
                 if (itemStack.isEmpty()) continue;
 
-                if (EnchantmentUtil.hasEnchantment(itemStack, true, ModEnchantments.INVENTORY_HOLDING)) continue;
+                if (EnchantmentUtil.hasEnchantment(itemStack, true, ModEnchantments.INVENTORY_HOLDING))
+                    continue;
 
                 inventory.player.dropItem(itemStack, true, false);
                 list.set(i, ItemStack.EMPTY);

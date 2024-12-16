@@ -45,7 +45,7 @@ public class ModConfiguration implements ConfigData {
 
     public static class InventoryHoldingEnchantment {
         @Tooltip
-        public boolean isDisableVanishingCurse = true;
+        public boolean isVanishingCurseDisabled = true;
     }
 
     public static ModConfiguration getConfig() {

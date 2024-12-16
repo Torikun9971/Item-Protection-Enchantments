@@ -25,16 +25,14 @@ public abstract class EntityMixin {
             return;
 
         if (itemEntity.getY() < itemEntity.getWorld().getBottomY()) {
-            protection_enchantments$protection();
-            ci.cancel();
+            protection_enchantments$protection(ci);
         }
     }
 
     @Inject(method = "tickInVoid", at = @At("HEAD"), cancellable = true)
     protected void protection_enchantments$tickInVoid(CallbackInfo ci) {
         if (ModConfiguration.getConfig().voidProtection.protectionHeight == ProtectionHeights.HEIGHT_WHERE_ENTITY_TAKES_DAMAGE) {
-            protection_enchantments$protection();
-            ci.cancel();
+            protection_enchantments$protection(ci);
         }
     }
 
@@ -48,8 +46,11 @@ public abstract class EntityMixin {
         }
     }
 
+    /**
+     * Protect if it is a target ItemEntity.
+     */
     @Unique
-    private void protection_enchantments$protection() {
+    private void protection_enchantments$protection(CallbackInfo ci) {
         if (!((Object) this instanceof ItemEntity itemEntity))
             return;
 
@@ -65,6 +66,8 @@ public abstract class EntityMixin {
 
             if (ModConfiguration.getConfig().voidProtection.isGlow)
                 itemEntity.setGlowing(true);
+
+            ci.cancel();
         }
     }
 }

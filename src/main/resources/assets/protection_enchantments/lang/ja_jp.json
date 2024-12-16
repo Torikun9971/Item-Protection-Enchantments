@@ -116,6 +116,9 @@
   "text.autoconfig.protection_enchantments.option.inventoryHolding.isTradeable": "取引可能",
   "text.autoconfig.protection_enchantments.option.inventoryHolding.isTradeable.@Tooltip": "村人などとの取引で手に入る",
 
-  "text.autoconfig.protection_enchantments.option.inventoryHolding.isDisableVanishingCurse": "消滅の呪いを無効化",
-  "text.autoconfig.protection_enchantments.option.inventoryHolding.isDisableVanishingCurse.@Tooltip": "このエンチャントがついている場合は消滅の呪いを無効化する"
+  "text.autoconfig.protection_enchantments.option.inventoryHolding.isVanishingCurseDisabled": "消滅の呪いを無効化",
+  "text.autoconfig.protection_enchantments.option.inventoryHolding.isVanishingCurseDisabled.@Tooltip": "このエンチャントがついている場合は消滅の呪いを無効化する",
+
+  "text.autoconfig.protection_enchantments.option.fixMC120158": "MC-120158を修正",
+  "text.autoconfig.protection_enchantments.option.fixMC120158.@Tooltip": "HurtEntitiesがtrueに設定された落下ブロックの下に\nアイテムや経験値オーブがあると消えるバグ(MC-120158)を修正する"
 }

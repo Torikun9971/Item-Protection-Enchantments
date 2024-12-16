@@ -20,7 +20,7 @@ import java.util.Optional;
 public class EnchantmentDefinitionMixin {
     @Shadow
     @Final
-    public static MapCodec<Enchantment.Definition> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+    public static final MapCodec<Enchantment.Definition> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             RegistryCodecs.entryList(RegistryKeys.ITEM).optionalFieldOf("supported_items").forGetter(definition -> Optional.ofNullable(definition.supportedItems())),
             RegistryCodecs.entryList(RegistryKeys.ITEM).optionalFieldOf("primary_items").forGetter(Enchantment.Definition::primaryItems),
             Codecs.rangedInt(1, 1024).fieldOf("weight").forGetter(Enchantment.Definition::weight),
