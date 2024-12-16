@@ -304,7 +304,7 @@ public class ModConfiguration implements ConfigData {
         public boolean isTradeable = true;
 
         @Tooltip
-        public boolean isDisableVanishingCurse = true;
+        public boolean isVanishingCurseDisabled = true;
 
         @Override
         public EnchantmentCategories getEnchantableItems() {

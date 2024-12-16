@@ -44,7 +44,9 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
 
             if (enchantment != null) {
                 int lvl = entry.getValue();
-                protection_enchantments$enchantmentTag.add(EnchantmentHelper.storeEnchantment(EnchantmentHelper.getEnchantmentId(enchantment), lvl));
+                protection_enchantments$enchantmentTag.add(
+                        EnchantmentHelper.storeEnchantment(EnchantmentHelper.getEnchantmentId(enchantment), lvl)
+                );
             }
         }
     }

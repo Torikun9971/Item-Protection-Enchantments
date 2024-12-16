@@ -29,7 +29,7 @@ public abstract class PlayerMixin {
                 return;
 
             if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()) &&
-                    ModConfiguration.getConfig().inventoryHolding.isDisableVanishingCurse)
+                    ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
                 continue;
 
             player.inventory.removeItemNoUpdate(i);
@@ -44,7 +44,8 @@ public abstract class PlayerMixin {
 
                 if (itemstack.isEmpty()) continue;
 
-                if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get())) continue;
+                if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()))
+                    continue;
 
                 inventory.player.drop(itemstack, true, false);
                 list.set(i, ItemStack.EMPTY);
