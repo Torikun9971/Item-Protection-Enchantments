@@ -23,8 +23,11 @@ public abstract class ShulkerBoxBlockMixin {
         BlockEntity blockEntity = level.getBlockEntity(new BlockPos(Mth.floor(x),Mth.floor(y),Mth.floor(z)));
 
         if (blockEntity instanceof EnchantableBlock enchantableBlock &&
-                enchantableBlock.protection_enchantments$getEnchantmentTag() != null) {
-            stack.getOrCreateTag().put("Enchantments", enchantableBlock.protection_enchantments$getEnchantmentTag());
+                enchantableBlock.protection_enchantments$getEnchantmentTag() != null)
+        {
+            stack.getOrCreateTag().put(
+                    "Enchantments", enchantableBlock.protection_enchantments$getEnchantmentTag()
+            );
         }
 
         return new ItemEntity(level, x, y, z, stack);
