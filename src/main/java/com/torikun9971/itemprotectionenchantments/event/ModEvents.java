@@ -1,0 +1,37 @@
+package com.torikun9971.itemprotectionenchantments.event;
+
+import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
+import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import me.shedaniel.autoconfig.AutoConfig;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
+import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+public class ModEvents {
+    @SubscribeEvent
+    public void blastEnchantmentEvent(ExplosionEvent.Detonate event) {
+        event.getAffectedEntities().removeIf((entity) -> {
+            if (!(entity instanceof ItemEntity))
+                return false;
+
+            return ItemProtectionEnchantments.hasEnchantment(
+                    ((ItemEntity) entity).getItem(), true, ModEnchantments.BLAST_PROTECTION_ITEM.get()
+            );
+        });
+    }
+
+    @SubscribeEvent
+    public void expireEnchantmentEvent(ItemExpireEvent event) {
+        if (ItemProtectionEnchantments.hasEnchantment(event.getEntityItem().getItem(), true, ModEnchantments.EXPIRE_PROTECTION_ITEM.get())) {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void loadConfigEvent(AddReloadListenerEvent event) {
+        AutoConfig.getConfigHolder(ModConfiguration.class).load();
+    }
+}

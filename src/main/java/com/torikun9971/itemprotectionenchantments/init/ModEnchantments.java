@@ -1,0 +1,19 @@
+package com.torikun9971.itemprotectionenchantments.init;
+
+import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
+import com.torikun9971.itemprotectionenchantments.enchantments.*;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+public class ModEnchantments {
+    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ItemProtectionEnchantments.MOD_ID);
+
+    public static final RegistryObject<Enchantment> FIRE_PROTECTION_ITEM = ENCHANTMENTS.register("fire_protection_item", FireProtectionEnchantment::new);
+    public static final RegistryObject<Enchantment> CACTUS_PROTECTION_ITEM = ENCHANTMENTS.register("cactus_protection_item", CactusProtectionEnchantment::new);
+    public static final RegistryObject<Enchantment> BLAST_PROTECTION_ITEM = ENCHANTMENTS.register("blast_protection_item", BlastProtectionEnchantment::new);
+    public static final RegistryObject<Enchantment> VOID_PROTECTION_ITEM = ENCHANTMENTS.register("void_protection_item", VoidProtectionEnchantment::new);
+    public static final RegistryObject<Enchantment> EXPIRE_PROTECTION_ITEM = ENCHANTMENTS.register("expire_protection_item", ExpireProtectionEnchantment::new);
+    public static final RegistryObject<Enchantment> INVENTORY_HOLDING = ENCHANTMENTS.register("inventory_holding", InventoryHoldingEnchantment::new);
+}
