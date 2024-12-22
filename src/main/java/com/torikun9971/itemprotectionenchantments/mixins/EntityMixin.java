@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @Inject(method = "checkOutOfWorld", at = @At("HEAD"), cancellable = true)
-    public void protection_enchantments$checkBelowWorld(CallbackInfo ci) {
+    public void protection_enchantments$checkOutOfWorld(CallbackInfo ci) {
         if (ModConfiguration.getConfig().voidProtection.protectionHeight != ProtectionHeights.MIN_BUILD_HEIGHT)
             return;
 
@@ -28,7 +28,7 @@ public abstract class EntityMixin {
     }
 
     @Inject(method = "outOfWorld", at = @At("HEAD"), cancellable = true)
-    protected void protection_enchantments$onBelowWorld(CallbackInfo ci) {
+    protected void protection_enchantments$outOfWorld(CallbackInfo ci) {
         if (ModConfiguration.getConfig().voidProtection.protectionHeight == ProtectionHeights.HEIGHT_WHERE_ENTITY_TAKES_DAMAGE) {
             protection_enchantments$protection(ci);
         }
