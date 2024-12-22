@@ -4,7 +4,7 @@ import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
@@ -33,14 +33,11 @@ public abstract class FallingBlockEntityMixin {
     @Unique
     private static Predicate<Entity> protection_enchantments$createDamageableEntityPredicate() {
         return entity -> {
-            if (entity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) entity;
+            if (!EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity))
+                return false;
 
-                if (player.isSpectator() || player.isCreative())
-                    return false;
-            }
-
-            return entity instanceof LivingEntity && entity.isAlive();
+            return entity instanceof LivingEntity &&
+                    EntityPredicates.LIVING_ENTITY_STILL_ALIVE.test((LivingEntity) entity);
         };
     }
 }
