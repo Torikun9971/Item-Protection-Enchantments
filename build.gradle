@@ -51,8 +51,8 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "mod_loader": project.mod_loader,
                 "loader_version": project.loader_version,
+                "maven_group": project.maven_group,
                 "mod_id": project.mod_id,
                 "fabric_api_version": project.fabric_api_version,
                 "cloth_config_version": project.cloth_config_version
