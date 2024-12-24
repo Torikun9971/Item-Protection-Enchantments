@@ -1,6 +1,6 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.item_protection_enchantments.blockentities.EnchantableBlock;
+import com.torikun9971.itemprotectionenchantments.blockentities.EnchantableBlock;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -21,7 +21,8 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
 
     @Inject(method = "saveAdditional", at = @At("TAIL"))
     protected void protection_enchantments$saveAdditional(CompoundTag tag, CallbackInfo ci) {
-        if (this.protection_enchantments$enchantmentTag != null) tag.put("Enchantments", protection_enchantments$enchantmentTag);
+        if (this.protection_enchantments$enchantmentTag != null)
+            tag.put("Enchantments", protection_enchantments$enchantmentTag);
     }
 
     @Inject(method = "loadFromTag", at = @At("TAIL"))
@@ -32,28 +33,31 @@ public abstract class ShulkerBoxBlockEntityMixin implements EnchantableBlock {
     }
 
     @Override
-    public void setEnchantments(@Nullable Map<Enchantment, Integer> enchantments) {
+    public void protection_enchantments$setEnchantments(@Nullable Map<Enchantment, Integer> enchantments) {
         protection_enchantments$enchantmentTag.clear();
 
-        if (enchantments != null) {
-            for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
-                Enchantment enchantment = entry.getKey();
+        if (enchantments == null)
+            return;
 
-                if (enchantment != null) {
-                    int lvl = entry.getValue();
-                    protection_enchantments$enchantmentTag.add(EnchantmentHelper.storeEnchantment(EnchantmentHelper.getEnchantmentId(enchantment), lvl));
-                }
+        for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
+            Enchantment enchantment = entry.getKey();
+
+            if (enchantment != null) {
+                int lvl = entry.getValue();
+                protection_enchantments$enchantmentTag.add(
+                        EnchantmentHelper.storeEnchantment(EnchantmentHelper.getEnchantmentId(enchantment), lvl)
+                );
             }
         }
     }
 
     @Override
-    public Map<Enchantment, Integer> getEnchantments() {
+    public Map<Enchantment, Integer> protection_enchantments$getEnchantments() {
         return EnchantmentHelper.deserializeEnchantments(protection_enchantments$enchantmentTag);
     }
 
     @Override
-    public ListTag getEnchantmentTag() {
+    public ListTag protection_enchantments$getEnchantmentTag() {
         return protection_enchantments$enchantmentTag;
     }
 }

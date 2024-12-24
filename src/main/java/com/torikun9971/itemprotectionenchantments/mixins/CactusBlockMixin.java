@@ -1,7 +1,7 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.item_protection_enchantments.ItemProtectionEnchantments;
-import com.item_protection_enchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
+import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -17,7 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class CactusBlockMixin {
     @Inject(method = "entityInside", at = @At("HEAD"), cancellable = true)
     public void protection_enchantments$entityInside(BlockState state, Level level, BlockPos pos, Entity entity, CallbackInfo ci) {
-        if (entity instanceof ItemEntity itemEntity && ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.CACTUS_PROTECTION_ITEM.get())) {
+        if (!(entity instanceof ItemEntity itemEntity))
+            return;
+
+        if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.CACTUS_PROTECTION_ITEM.get())) {
             ci.cancel();
         }
     }
