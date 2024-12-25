@@ -1,4 +1,4 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
 import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,9 +1,12 @@
-package com.item_protection_enchantments;
+package com.torikun9971.itemprotectionenchantments;
 
-import com.item_protection_enchantments.config.ModConfiguration;
-import com.item_protection_enchantments.enchantments.event.ItemProtectionEvent;
-import com.item_protection_enchantments.init.*;
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
+import com.torikun9971.itemprotectionenchantments.event.ModEvents;
 import com.mojang.logging.LogUtils;
+import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.init.ModLootFunctionTypes;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.api.distmarker.Dist;
@@ -11,14 +14,13 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.client.ConfigScreenHandler;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
-import java.util.Locale;
 import java.util.Map;
 
 @Mod(ItemProtectionEnchantments.MOD_ID)
@@ -30,8 +32,6 @@ public class ItemProtectionEnchantments {
         ModEnchantments.ENCHANTMENTS.register(eventBus);
         ModLootFunctionTypes.LOOT_FUNCTION_TYPES.register(eventBus);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_CONFIG, String.format(Locale.ROOT, "%s.toml", MOD_ID));
-
         eventBus.addListener(this::setup);
 
         if (FMLEnvironment.dist.isClient()) {
@@ -41,27 +41,30 @@ public class ItemProtectionEnchantments {
 
     private void setup(final FMLCommonSetupEvent event) {
         IEventBus modEventBus = NeoForge.EVENT_BUS;
-        modEventBus.register(new ItemProtectionEvent());
+        modEventBus.register(new ModEvents());
+
+        AutoConfig.register(ModConfiguration.class, JanksonConfigSerializer::new);
     }
 
     @OnlyIn(Dist.CLIENT)
     private void setupClient(final FMLClientSetupEvent event) {
-
+        ModLoadingContext.get().registerExtensionPoint(
+                ConfigScreenHandler.ConfigScreenFactory.class,
+                () -> new ConfigScreenHandler.ConfigScreenFactory(
+                        (client, parent) -> AutoConfig.getConfigScreen(ModConfiguration.class, parent).get()
+                )
+        );
     }
 
     public static boolean hasEnchantment(ItemStack itemStack, boolean mustHaveAll, Enchantment... enchantments) {
         Map<Enchantment, Integer> enchantmentsMap = itemStack.getAllEnchantments();
 
         for (Enchantment enchantment : enchantments) {
-            if (mustHaveAll) {
-                if (!enchantmentsMap.containsKey(enchantment)) {
-                    return false;
-                }
-            } else {
-                if (enchantmentsMap.containsKey(enchantment)) {
-                    return true;
-                }
-            }
+            if (mustHaveAll && !enchantmentsMap.containsKey(enchantment))
+                return false;
+
+            if (!mustHaveAll && enchantmentsMap.containsKey(enchantment))
+                return true;
         }
 
         return mustHaveAll;

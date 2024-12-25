@@ -1,26 +1,28 @@
-package com.item_protection_enchantments.enchantments;
+package com.torikun9971.itemprotectionenchantments.enchantments;
 
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration.IBaseProtectionConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 
 import java.util.function.Predicate;
 
-public class ItemProtectionEnchantment extends Enchantment {
+public abstract class BaseProtectionEnchantment extends Enchantment {
     public static final int MIN_COST = 30;
     public static final int MAX_COST = 50;
+    public static final Rarity RARITY = Rarity.VERY_RARE;
+    public static final EnchantmentCategories CATEGORY = EnchantmentCategories.ITEMS_AND_COMPATIBLE_BLOCKS;
 
-    public ItemProtectionEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentCategories.ALL_ITEMS.getEnchantmentCategory(), EquipmentSlot.values());
+    public BaseProtectionEnchantment() {
+        super(RARITY, CATEGORY.getEnchantmentCategory(), EquipmentSlot.values());
     }
 
     @Override
     public int getMinCost(int enchantmentLevel) {
-        return MIN_COST;
+        return getConfig().getMinimumCost();
     }
 
     @Override
@@ -30,16 +32,25 @@ public class ItemProtectionEnchantment extends Enchantment {
 
     @Override
     public Rarity getRarity() {
-        return Rarity.VERY_RARE;
+        return getConfig().getRarity();
     }
 
-    public boolean canEnchant(ItemStack stack, EnchantmentCategories category) {
-        if (category.getPredicate() != null) {
-            return category.getPredicate().test(stack.getItem());
-        }
-
-        return false;
+    @Override
+    public boolean canEnchant(ItemStack stack) {
+        return getConfig().getEnchantableItems().getPredicate().test(stack.getItem());
     }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return getConfig().isTreasure();
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return getConfig().isTradeable();
+    }
+
+    protected abstract IBaseProtectionConfig getConfig();
 
     public enum EnchantmentCategories {
         ALL_ITEMS("all_items", (item) -> true),
@@ -49,10 +60,8 @@ public class ItemProtectionEnchantment extends Enchantment {
                 return true;
             }
 
-            if (item instanceof BlockItem blockItem) {
-                if (blockItem.getBlock() instanceof ShulkerBoxBlock) {
-                    return true;
-                }
+            if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock) {
+                return true;
             }
 
             return false;
