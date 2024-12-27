@@ -1,4 +1,4 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -20,7 +20,8 @@ public abstract class EnchantmentHelperMixin {
         boolean hasInvalidEnchantment = true;
 
         while (hasInvalidEnchantment) {
-            hasInvalidEnchantment = enchantments.stream().anyMatch((entry) -> !entry.enchantment.canEnchant(stack));
+            hasInvalidEnchantment = enchantments.stream()
+                    .anyMatch((entry) -> !entry.enchantment.canEnchant(stack));
 
             if (hasInvalidEnchantment) {
                 enchantments = EnchantmentHelper.selectEnchantment(featureFlagSet, random, stack, level, treasureAllowed);

@@ -81,7 +81,7 @@ jar {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
@@ -90,6 +90,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+    implementation(fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"))
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -97,8 +98,9 @@ tasks.named('processResources', ProcessResources).configure {
             minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
             forge_version: forge_version, forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_logo: mod_logo, mod_url: mod_url, mod_description: mod_description,
+            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version, mod_authors: mod_authors,
+            mod_logo: mod_logo, mod_url: mod_url, mod_issue_url: mod_issue_url, mod_description: mod_description,
+            cloth_config_version: cloth_config_version
     ]
     inputs.properties replaceProperties
 
