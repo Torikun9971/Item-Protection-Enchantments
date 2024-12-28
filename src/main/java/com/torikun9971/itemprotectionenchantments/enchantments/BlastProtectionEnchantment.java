@@ -7,7 +7,7 @@ import net.minecraft.item.Items;
 public class BlastProtectionEnchantment extends BaseProtectionEnchantment {
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        return stack.isOf(Items.NETHER_STAR) && super.isAcceptableItem(stack);
+        return !stack.isOf(Items.NETHER_STAR) && super.isAcceptableItem(stack);
     }
 
     @Override
