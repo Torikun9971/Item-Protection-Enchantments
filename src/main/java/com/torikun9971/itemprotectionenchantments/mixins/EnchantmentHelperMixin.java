@@ -1,4 +1,4 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
@@ -20,7 +20,8 @@ public abstract class EnchantmentHelperMixin {
         boolean hasInvalidEnchantment = true;
 
         while (hasInvalidEnchantment) {
-            hasInvalidEnchantment = enchantments.stream().anyMatch((entry) -> !entry.enchantment.isAcceptableItem(stack));
+            hasInvalidEnchantment = enchantments.stream()
+                    .anyMatch((entry) -> !entry.enchantment.isAcceptableItem(stack));
 
             if (hasInvalidEnchantment) {
                 enchantments = EnchantmentHelper.generateEnchantments(enabledFeatures, random, stack, level, treasureAllowed);

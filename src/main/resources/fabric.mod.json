@@ -2,15 +2,10 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-  "custom": {
-    "modmenu": {
-      "update_checker": true
-    }
-  },
   "accessWidener": "${mod_id}.accesswidener",
 
   "name": "Item Protection Enchantments",
-  "description": "Adds Item Protection Enchantments",
+  "description": "Adds enchantments to protect items",
   "authors": [
     "Torikun9971"
   ],
@@ -20,18 +15,18 @@
     "issues": "https://github.com/Torikun9971/Item-Protection-Enchantments/issues"
   },
   "license": "LGPL-3.0",
-  "icon": "assets/${mod_id}/icon.png",
+  "icon": "icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.item_protection_enchantments.ItemProtectionEnchantments"
+      "${maven_group}.ItemProtectionEnchantments"
     ],
     "client": [
 
     ],
     "modmenu": [
-      "com.item_protection_enchantments.compat.modmenu.ModMenuIntegration"
+      "${maven_group}.compat.modmenu.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -41,10 +36,11 @@
     "fabricloader": ">=${loader_version}",
     "fabric-api": ">=${fabric_api_version}",
     "minecraft": "~${minecraft_version}",
-    "java": ">=21",
+    "java": ">=17",
     "cloth-config": ">=${cloth_config_version}"
   },
   "suggests": {
-    "modmenu": "*"
+    "modmenu": "*",
+    "catalogue": "*"
   }
 }
