@@ -1,7 +1,7 @@
-package com.item_protection_enchantments.init;
+package com.torikun9971.itemprotectionenchantments.init;
 
-import com.item_protection_enchantments.ItemProtectionEnchantments;
-import com.item_protection_enchantments.enchantments.*;
+import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
+import com.torikun9971.itemprotectionenchantments.enchantments.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.registries.DeferredHolder;

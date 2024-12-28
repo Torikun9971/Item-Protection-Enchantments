@@ -1,8 +1,8 @@
-package com.item_protection_enchantments.mixins;
+package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.item_protection_enchantments.ItemProtectionEnchantments;
-import com.item_protection_enchantments.config.ModConfiguration;
-import com.item_protection_enchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
+import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -15,19 +15,24 @@ import java.util.List;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
+    /**
+     * delete items cursed with the Curse of Vanishing under specific conditions.
+     */
     @Redirect(method = "dropEquipment", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;destroyVanishingCursedItems()V", ordinal = 0))
     private void protection_enchantments$destroyVanishingCursedItems(Player player) {
         for(int i = 0; i < player.inventory.getContainerSize(); ++i) {
             ItemStack itemstack = player.inventory.getItem(i);
-            if (!itemstack.isEmpty() && EnchantmentHelper.hasVanishingCurse(itemstack)) {
-                if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get())) {
-                    if (ModConfiguration.INVENTORY_HOLDING_DISABLE_VANISHING_CURSE.get()) {
-                        continue;
-                    }
-                }
 
-                player.inventory.removeItemNoUpdate(i);
-            }
+            if (itemstack.isEmpty()) return;
+
+            if (!EnchantmentHelper.hasVanishingCurse(itemstack))
+                return;
+
+            if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()) &&
+                    ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
+                continue;
+
+            player.inventory.removeItemNoUpdate(i);
         }
     }
 
@@ -36,12 +41,14 @@ public abstract class PlayerMixin {
         for(List<ItemStack> list : inventory.compartments) {
             for(int i = 0; i < list.size(); ++i) {
                 ItemStack itemstack = list.get(i);
-                if (!itemstack.isEmpty()) {
-                    if (!ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get())) {
-                        inventory.player.drop(itemstack, true, false);
-                        list.set(i, ItemStack.EMPTY);
-                    }
-                }
+
+                if (itemstack.isEmpty()) continue;
+
+                if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()))
+                    continue;
+
+                inventory.player.drop(itemstack, true, false);
+                list.set(i, ItemStack.EMPTY);
             }
         }
     }

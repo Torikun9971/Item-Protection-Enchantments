@@ -11,6 +11,8 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 base {
@@ -56,6 +58,8 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation("me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}")
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -72,7 +76,9 @@ tasks.withType(ProcessResources).configureEach {
             mod_authors            : mod_authors,
             mod_logo               : mod_logo,
             mod_url                : mod_url,
-            mod_description        : mod_description
+            mod_issue_url          : mod_issue_url,
+            mod_description        : mod_description,
+            cloth_config_version   : cloth_config_version
     ]
     inputs.properties replaceProperties
 
