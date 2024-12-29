@@ -23,10 +23,10 @@ public abstract class PlayerEntityMixin {
         for(int i = 0; i < player.inventory.getContainerSize(); ++i) {
             ItemStack itemstack = player.inventory.getItem(i);
 
-            if (itemstack.isEmpty()) return;
+            if (itemstack.isEmpty()) continue;
 
             if (!EnchantmentHelper.hasVanishingCurse(itemstack))
-                return;
+                continue;
 
             if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()) &&
                     ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
