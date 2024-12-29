@@ -1,9 +1,9 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
-import com.torikun9971.itemprotectionenchantments.enchantments.VoidProtectionEnchantment;
-import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration.VoidProtectionEnchantment.ProtectionHeights;
+import com.torikun9971.itemprotectionenchantments.enchantment.EnchantmentUtil;
+import com.torikun9971.itemprotectionenchantments.enchantment.ModEnchantments;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityMixin {
     @Inject(method = "checkBelowWorld", at = @At("HEAD"), cancellable = true)
     public void protection_enchantments$checkBelowWorld(CallbackInfo ci) {
-        if (ModConfiguration.getConfig().voidProtection.protectionHeight != VoidProtectionEnchantment.ProtectionHeights.MIN_BUILD_HEIGHT)
+        if (ModConfiguration.getConfig().voidProtection.protectionHeight != ProtectionHeights.MIN_BUILD_HEIGHT)
             return;
 
         if (!((Object) this instanceof ItemEntity itemEntity))
@@ -29,7 +29,7 @@ public abstract class EntityMixin {
 
     @Inject(method = "onBelowWorld", at = @At("HEAD"), cancellable = true)
     protected void protection_enchantments$onBelowWorld(CallbackInfo ci) {
-        if (ModConfiguration.getConfig().voidProtection.protectionHeight == VoidProtectionEnchantment.ProtectionHeights.HEIGHT_WHERE_ENTITY_TAKES_DAMAGE) {
+        if (ModConfiguration.getConfig().voidProtection.protectionHeight == ProtectionHeights.HEIGHT_WHERE_ENTITY_TAKES_DAMAGE) {
             protection_enchantments$protection(ci);
         }
     }
@@ -42,7 +42,7 @@ public abstract class EntityMixin {
         if (!((Object) this instanceof ItemEntity itemEntity))
             return;
 
-        if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.VOID_PROTECTION_ITEM.get())) {
+        if (EnchantmentUtil.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.VOID_PROTECTION_ITEM)) {
             itemEntity.setNoGravity(true);
             itemEntity.setInvulnerable(true);
             itemEntity.setDeltaMovement(0, 0, 0);

@@ -1,11 +1,12 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
-import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.enchantment.EnchantmentUtil;
+import com.torikun9971.itemprotectionenchantments.enchantment.ModEnchantments;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,10 +26,10 @@ public abstract class PlayerMixin {
 
             if (itemstack.isEmpty()) continue;
 
-            if (!EnchantmentHelper.hasVanishingCurse(itemstack))
+            if (!EnchantmentHelper.has(itemstack, EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP))
                 continue;
 
-            if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()) &&
+            if (EnchantmentUtil.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING) &&
                     ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
                 continue;
 
@@ -44,7 +45,7 @@ public abstract class PlayerMixin {
 
                 if (itemstack.isEmpty()) continue;
 
-                if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()))
+                if (EnchantmentUtil.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING))
                     continue;
 
                 inventory.player.drop(itemstack, true, false);

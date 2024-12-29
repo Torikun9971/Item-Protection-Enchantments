@@ -1,7 +1,7 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
-import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.enchantment.EnchantmentUtil;
+import com.torikun9971.itemprotectionenchantments.enchantment.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -20,7 +20,7 @@ public abstract class CactusBlockMixin {
         if (!(entity instanceof ItemEntity itemEntity))
             return;
 
-        if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.CACTUS_PROTECTION_ITEM.get())) {
+        if (EnchantmentUtil.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.CACTUS_PROTECTION_ITEM)) {
             ci.cancel();
         }
     }
