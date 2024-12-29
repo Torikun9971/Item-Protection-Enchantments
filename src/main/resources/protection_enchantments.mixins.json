@@ -6,7 +6,7 @@
   "refmap": "protection_enchantments.refmap.json",
   "mixins": [
     "CactusBlockMixin",
-    "EnchantmentHelperMixin",
+    "EnchantmentDefinitionMixin",
     "EntityMixin",
     "ItemEntityMixin",
     "PlayerMixin",

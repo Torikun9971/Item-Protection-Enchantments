@@ -3,11 +3,9 @@ package com.torikun9971.itemprotectionenchantments;
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import com.torikun9971.itemprotectionenchantments.event.ModEvents;
 import com.mojang.logging.LogUtils;
-import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -26,8 +24,6 @@ public class ItemProtectionEnchantments {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public ItemProtectionEnchantments(IEventBus eventBus) {
-        ModEnchantments.ENCHANTMENTS.register(eventBus);
-
         eventBus.addListener(this::setup);
 
         if (FMLEnvironment.dist.isClient()) {
@@ -50,17 +46,7 @@ public class ItemProtectionEnchantments {
         );
     }
 
-    public static boolean hasEnchantment(ItemStack itemStack, boolean mustHaveAll, Enchantment... enchantments) {
-        for (Enchantment enchantment : enchantments) {
-            int lvl = itemStack.getEnchantmentLevel(enchantment);
-
-            if (mustHaveAll && lvl < 1)
-                return false;
-
-            if (!mustHaveAll && lvl > 0)
-                return true;
-        }
-
-        return mustHaveAll;
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }
