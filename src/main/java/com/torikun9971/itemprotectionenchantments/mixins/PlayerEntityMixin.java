@@ -25,7 +25,8 @@ public abstract class PlayerEntityMixin {
 
             if (itemStack.isEmpty()) continue;
 
-            if (!EnchantmentHelper.hasAnyEnchantmentsWith(itemStack, EnchantmentEffectComponentTypes.PREVENT_EQUIPMENT_DROP)) continue;
+            if (!EnchantmentHelper.hasAnyEnchantmentsWith(itemStack, EnchantmentEffectComponentTypes.PREVENT_EQUIPMENT_DROP))
+                continue;
 
             if (EnchantmentUtil.hasEnchantment(itemStack, true, ModEnchantments.INVENTORY_HOLDING) &&
                     ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
