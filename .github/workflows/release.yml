@@ -29,7 +29,7 @@ jobs:
 
       - name: Fetch Changelog from main branch
         run: |
-          git fetch origin main
+          git fetch origin ${{ github.event.repository.default_branch }}
           git checkout origin/${{ github.event.repository.default_branch }} -- CHANGELOG.md
 
       - name: Release on Modrinth, CurseForge, and GitHub
