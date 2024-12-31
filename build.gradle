@@ -174,7 +174,7 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
         gameVersions = [minecraft_version]
 
         dependencies {
-            required.project "cloth-config"
+            required.project "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
         }
     }
 }
