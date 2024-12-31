@@ -27,9 +27,6 @@ jobs:
       - name: Clean with Gradle
         run: ./gradlew clean
 
-      - name: Build with Gradle
-        run: ./gradlew build
-
       - name: Fetch Changelog from main branch
         run: |
           git fetch origin ${{ github.event.repository.default_branch }}
@@ -39,6 +36,9 @@ jobs:
         run: |
           echo "git_release_title=$(./gradlew printGitReleaseTitle -q)" >> $GITHUB_ENV
           echo "git_tag=$(./gradlew printGitTag -q)" >> $GITHUB_ENV
+
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Release on Github
         env:
