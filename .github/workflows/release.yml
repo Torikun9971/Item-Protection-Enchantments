@@ -24,6 +24,9 @@ jobs:
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
 
+      - name: Clean with Gradle
+        run: ./gradlew clean
+
       - name: Build with Gradle
         run: ./gradlew build
 
@@ -43,7 +46,8 @@ jobs:
         run: |
           gh release create "$git_tag" \
               --title "$git_release_title" \
-              --notes-file CHANGELOG.md
+              --notes-file CHANGELOG.md \
+              build/libs/*.jar
 
       - name: Release on CurseForge
         env:
