@@ -170,6 +170,7 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
         changelog = changelogFile.text
         versionName = "$mod_file_name $version"
         gameVersions = [minecraft_version]
+        loaders = [mod_loader]
 
         dependencies {
             required.project "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
