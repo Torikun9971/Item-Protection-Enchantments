@@ -1,0 +1,60 @@
+name: release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Grant execute permission for Gradlew
+        run: chmod +x ./gradlew
+
+      - name: Clean with Gradle
+        run: ./gradlew clean
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Fetch Changelog from main branch
+        run: |
+          git fetch origin ${{ github.event.repository.default_branch }}
+          git checkout origin/${{ github.event.repository.default_branch }} -- CHANGELOG.md
+
+      - name: Set Environment Variables
+        run: |
+          echo "git_release_title=$(./gradlew printGitReleaseTitle -q)" >> $GITHUB_ENV
+          echo "git_tag=$(./gradlew printGitTag -q)" >> $GITHUB_ENV
+
+      - name: Release on Github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$git_tag" \
+              --title "$git_release_title" \
+              --notes-file CHANGELOG.md \
+              build/libs/*.jar
+
+      - name: Release on CurseForge
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+        run: ./gradlew curseforge
+
+      - name: Release on Modrinth
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: ./gradlew modrinth
