@@ -41,3 +41,10 @@ type="required"
 versionRange="[${cloth_config_version},)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="catalogue"
+type="optional"
+versionRange="[]"
+ordering="NONE"
+side="BOTH"
