@@ -130,7 +130,7 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-tasks.register ('printFileName') {
+tasks.register ('printGitReleaseTitle') {
     doLast {
         println("${mod_file_name}-${version}")
     }
