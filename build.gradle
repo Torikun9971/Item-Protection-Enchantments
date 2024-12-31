@@ -1,13 +1,15 @@
 plugins {
     id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
+    id 'net.darkhax.curseforgegradle' version '1.1.26'
+    id "com.modrinth.minotaur" version '2.+'
 }
 
-version = project.mod_version
+version = "$minecraft_version-$mod_loader-$mod_version"
 group = project.maven_group
 
 base {
-    archivesName = "${project.archives_base_name}-${project.minecraft_version}-${project.mod_loader}"
+    archivesName = "${project.archives_base_name}"
 }
 
 repositories {
@@ -89,5 +91,59 @@ publishing {
 
     repositories {
 
+    }
+}
+
+tasks.register ('printGitReleaseTitle') {
+    doLast {
+        println("${archives_base_name}-${version}")
+    }
+}
+
+tasks.register ('printGitTag') {
+    doLast {
+        println("v${mod_version}-mc${minecraft_version}-${mod_loader.toLowerCase()}")
+    }
+}
+
+def changelogFile = file("$project.rootDir/CHANGELOG.md")
+
+if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists ()) {
+    tasks.register ('curseforge', TaskPublishCurseForge) {
+        apiToken = System.getenv("CURSEFORGE_TOKEN")
+
+        def mainFile = upload ('1020415', remapJar)
+        mainFile.releaseType = 'release'
+        mainFile.addModLoader ("$mod_loader")
+        mainFile.addGameVersion ("$minecraft_version")
+        mainFile.addJavaVersion ("Java $targetJavaVersion")
+        mainFile.addEnvironment ('Server', 'Client')
+
+        mainFile.changelog = changelogFile
+        mainFile.changelogType = 'markdown'
+
+        mainFile.addRequirement ('306612')
+        mainFile.addRequirement ('348521')
+        mainFile.addOptional ('459701')
+        mainFile.addOptional ('308702')
+    }
+}
+
+if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
+    modrinth {
+        token = System.getenv("MODRINTH_TOKEN")
+        projectId = "3fmH6nwV"
+        versionNumber = "$project.version"
+        uploadFile = remapJar
+        changelog = changelogFile.text
+        versionName = "$archives_base_name $version"
+        gameVersions = [minecraft_version]
+        loaders = [mod_loader]
+
+        dependencies {
+            required.project "fabric-api", "${fabric_api_version}"
+            required.project "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
+            optional.project "modmenu"
+        }
     }
 }
