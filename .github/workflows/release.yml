@@ -24,21 +24,37 @@ jobs:
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
 
+      - name: Clean with Gradle
+        run: ./gradlew clean
+
       - name: Build with Gradle
         run: ./gradlew build
 
       - name: Fetch Changelog from main branch
         run: |
-          git fetch origin main
-          git checkout origin/main -- CHANGELOG.md
+          git fetch origin ${{ github.event.repository.default_branch }}
+          git checkout origin/${{ github.event.repository.default_branch }} -- CHANGELOG.md
 
-      - name: Release on Modrinth, CurseForge, and GitHub
-        uses: Kir-Antipov/mc-publish@v3.3
-        with:
-          modrinth-id: item-protection-enchantments
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+      - name: Set Environment Variables
+        run: |
+          echo "git_release_title=$(./gradlew printGitReleaseTitle -q)" >> $GITHUB_ENV
+          echo "git_tag=$(./gradlew printGitTag -q)" >> $GITHUB_ENV
 
-          curseforge-id: 1020415
-          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+      - name: Release on Github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$git_tag" \
+              --title "$git_release_title" \
+              --notes-file CHANGELOG.md \
+              build/libs/*.jar
 
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release on CurseForge
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+        run: ./gradlew curseforge
+
+      - name: Release on Modrinth
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: ./gradlew modrinth
