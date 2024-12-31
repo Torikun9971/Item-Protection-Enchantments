@@ -1,12 +1,16 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.gradle.userdev' version '7.0.142'
+    id 'net.darkhax.curseforgegradle' version '1.1.26'
+    id "com.modrinth.minotaur" version '2.+'
 }
 
-version = mod_version
+version = "$minecraft_version-$mod_loader-$mod_version"
 group = mod_group_id
 
 repositories {
@@ -16,10 +20,10 @@ repositories {
 }
 
 base {
-    archivesName.set("${mod_file_name}-${minecraft_version}-${mod_loader}")
+    archivesName.set("${mod_file_name}")
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 
 minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -108,5 +112,55 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+    }
+}
+
+tasks.register ('printGitReleaseTitle') {
+    doLast {
+        println("${mod_file_name}-${version}")
+    }
+}
+
+tasks.register ('printGitTag') {
+    doLast {
+        println("v${mod_version}-mc${minecraft_version}-${mod_loader.toLowerCase()}")
+    }
+}
+
+def changelogFile = file("$project.rootDir/CHANGELOG.md")
+
+if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists ()) {
+    tasks.register ('curseforge', TaskPublishCurseForge) {
+        apiToken = System.getenv("CURSEFORGE_TOKEN")
+
+        def mainFile = upload ('1020415', jar)
+        mainFile.releaseType = 'release'
+        mainFile.addModLoader ("$mod_loader")
+        mainFile.addGameVersion ("$minecraft_version")
+        mainFile.addJavaVersion ("Java $java_version")
+        mainFile.addEnvironment ('Server', 'Client')
+
+        mainFile.changelog = changelogFile
+        mainFile.changelogType = 'markdown'
+
+        mainFile.addRequirement ('348521')
+        mainFile.addOptional ('459701')
+    }
+}
+
+if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
+    modrinth {
+        token = System.getenv("MODRINTH_TOKEN")
+        projectId = "3fmH6nwV"
+        versionNumber = "$project.version"
+        uploadFile = jar
+        changelog = changelogFile.text
+        versionName = "$mod_file_name $version"
+        gameVersions = [minecraft_version]
+        loaders = [mod_loader]
+
+        dependencies {
+            required.project "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
+        }
     }
 }
