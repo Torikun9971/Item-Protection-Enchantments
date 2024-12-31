@@ -130,7 +130,7 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.register ('printGitReleaseTitle') {
     doLast {
-        println("${mod_file_name}-${version}")
+        println("${mod_file_name}-${minecraft_version}-(Neo)Forge-${mod_version}")
     }
 }
 
@@ -148,7 +148,7 @@ if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists ()) {
 
         def mainFile = upload ('1020415', jar)
         mainFile.releaseType = 'release'
-        mainFile.addModLoader ("$mod_loader")
+        mainFile.addModLoader ("$mod_loader", "NeoForge")
         mainFile.addGameVersion ("$minecraft_version")
         mainFile.addJavaVersion ("Java $java_version")
         mainFile.addEnvironment ('Server', 'Client')
