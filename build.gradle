@@ -119,10 +119,10 @@ if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists ()) {
         mainFile.changelog = changelogFile
         mainFile.changelogType = 'markdown'
 
-        mainFile.addRequirement ('306612')
-        mainFile.addRequirement ('348521')
-        mainFile.addOptional ('459701')
-        mainFile.addOptional ('308702')
+        mainFile.addRequirement ('fabric-api')
+        mainFile.addRequirement ('cloth-config')
+        mainFile.addOptional ('catalogue')
+        mainFile.addOptional ('modmenu')
     }
 }
 
