@@ -138,8 +138,8 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
         loaders = [mod_loader]
 
         dependencies {
-            required.project "fabric-api", "${fabric_api_version}"
-            required.project "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
+            required.version "fabric-api", "${fabric_api_version}"
+            required.version "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
             optional.project "modmenu"
         }
     }
