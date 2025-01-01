@@ -175,7 +175,7 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
         loaders = ["$mod_loader", "NeoForge"]
 
         dependencies {
-            required.project "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
+            required.version "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
         }
     }
 }
