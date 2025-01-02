@@ -190,7 +190,7 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
     modrinth {
         token = System.getenv("MODRINTH_TOKEN")
         projectId = "3fmH6nwV"
-        versionNumber = "$mod_version+$minecraft_version-$mod_loader"
+        versionNumber = "$mod_version+$minecraft_version-${mod_loader.toLowerCase()}"
         uploadFile = jar
         changelog = changelogFile.text
         versionName = "$mod_file_name $version"
