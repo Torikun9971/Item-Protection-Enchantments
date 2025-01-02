@@ -135,7 +135,7 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
     modrinth {
         token = System.getenv("MODRINTH_TOKEN")
         projectId = "3fmH6nwV"
-        versionNumber = "$mod_version+$minecraft_version-$mod_loader"
+        versionNumber = "$mod_version+$minecraft_version-${mod_loader.toLowerCase()}"
         uploadFile = remapJar
         changelog = changelogFile.text
         versionName = "$archives_base_name $version"
