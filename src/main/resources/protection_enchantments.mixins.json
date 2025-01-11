@@ -7,7 +7,6 @@
   "mixins": [
     "FallingBlockEntityMixin",
     "CactusBlockMixin",
-    "EnchantmentHelperMixin",
     "EntityMixin",
     "ItemEntityMixin",
     "PlayerMixin",
