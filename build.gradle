@@ -144,7 +144,7 @@ tasks.register ('printGitTag') {
 
 def changelogFile = file("$project.rootDir/CHANGELOG.md")
 
-if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists ()) {
+if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists()) {
     tasks.register ('curseforge', TaskPublishCurseForge) {
         apiToken = System.getenv("CURSEFORGE_TOKEN")
 
@@ -175,7 +175,7 @@ if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
         loaders = [mod_loader.toLowerCase()]
 
         dependencies {
-            required.version "cloth-config", "${cloth_config_version}+${mod_loader.toLowerCase()}"
+            required.version "cloth-config", "i0ExoqTD"
         }
     }
 }
