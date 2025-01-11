@@ -43,7 +43,7 @@ jobs:
       - name: Release on Modrinth
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-        run: ./gradlew modrinth
+        run: ./gradlew modrinth --stacktrace --info
 
       - name: Release on Github
         env:
