@@ -51,6 +51,11 @@ public abstract class BaseProtectionEnchantment extends Enchantment {
         return getConfig().isTradeable();
     }
 
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return canEnchant(stack);
+    }
+
     protected abstract IBaseProtectionConfig getConfig();
 
     public enum EnchantmentTypes {
