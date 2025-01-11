@@ -1,4 +1,4 @@
-package com.torikun9971.itemprotectionenchantments.blockentities;
+package com.torikun9971.itemprotectionenchantments.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.nbt.NbtList;
