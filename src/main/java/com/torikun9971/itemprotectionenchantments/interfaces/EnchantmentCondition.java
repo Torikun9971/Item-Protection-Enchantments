@@ -1,4 +1,4 @@
-package com.torikun9971.itemprotectionenchantments.enchantments;
+package com.torikun9971.itemprotectionenchantments.interfaces;
 
 import net.minecraft.item.ItemStack;
 

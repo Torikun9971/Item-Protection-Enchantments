@@ -3,7 +3,7 @@ package com.torikun9971.itemprotectionenchantments.lootfunctiontypes;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import com.torikun9971.itemprotectionenchantments.enchantments.EnchantableBlock;
+import com.torikun9971.itemprotectionenchantments.interfaces.EnchantableBlock;
 import com.torikun9971.itemprotectionenchantments.init.ModLootFunctionTypes;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;

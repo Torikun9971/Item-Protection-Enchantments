@@ -1,6 +1,7 @@
 package com.torikun9971.itemprotectionenchantments.enchantments;
 
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration.IBaseProtectionConfig;
+import com.torikun9971.itemprotectionenchantments.interfaces.EnchantmentCondition;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;

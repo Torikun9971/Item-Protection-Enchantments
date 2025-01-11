@@ -1,6 +1,6 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.enchantments.EnchantmentCondition;
+import com.torikun9971.itemprotectionenchantments.interfaces.EnchantmentCondition;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.ItemStack;
