@@ -1,6 +1,7 @@
 package com.torikun9971.itemprotectionenchantments.enchantments;
 
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration.IBaseProtectionConfig;
+import com.torikun9971.itemprotectionenchantments.interfaces.EnchantmentCondition;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -11,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.function.Predicate;
 
-public abstract class BaseProtectionEnchantment extends Enchantment {
+public abstract class BaseProtectionEnchantment extends Enchantment implements EnchantmentCondition {
     public static final int MIN_POWER = 30;
     public static final int MAX_POWER = 50;
     public static final Rarity RARITY = Rarity.VERY_RARE;
@@ -49,6 +50,11 @@ public abstract class BaseProtectionEnchantment extends Enchantment {
     @Override
     public boolean isAvailableForEnchantedBookOffer() {
         return getConfig().isTradeable();
+    }
+
+    @Override
+    public boolean condition(ItemStack stack) {
+        return isAcceptableItem(stack);
     }
 
     protected abstract IBaseProtectionConfig getConfig();

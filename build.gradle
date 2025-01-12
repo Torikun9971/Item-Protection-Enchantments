@@ -134,13 +134,13 @@ if (System.getenv("CURSEFORGE_TOKEN") && changelogFile.exists ()) {
 if (System.getenv("MODRINTH_TOKEN") && changelogFile.exists ()) {
     modrinth {
         token = System.getenv("MODRINTH_TOKEN")
-        projectId = "3fmH6nwV"
+        projectId = '3fmH6nwV'
         versionNumber = "$mod_version+$minecraft_version-${mod_loader.toLowerCase()}"
         uploadFile = remapJar
         changelog = changelogFile.text
         versionName = "$archives_base_name $version"
         gameVersions = [minecraft_version]
-        loaders = [mod_loader]
+        loaders = [mod_loader.toLowerCase()]
 
         dependencies {
             required.version "fabric-api", "${fabric_api_version}"

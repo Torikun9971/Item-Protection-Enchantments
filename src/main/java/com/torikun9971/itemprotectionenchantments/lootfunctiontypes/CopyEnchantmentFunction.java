@@ -1,7 +1,7 @@
 package com.torikun9971.itemprotectionenchantments.lootfunctiontypes;
 
 import com.google.common.collect.ImmutableSet;
-import com.torikun9971.itemprotectionenchantments.blockentities.EnchantableBlock;
+import com.torikun9971.itemprotectionenchantments.interfaces.EnchantableBlock;
 import com.torikun9971.itemprotectionenchantments.init.ModLootFunctionTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

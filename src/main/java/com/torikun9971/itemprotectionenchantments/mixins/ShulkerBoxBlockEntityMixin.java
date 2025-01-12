@@ -1,6 +1,6 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.blockentities.EnchantableBlock;
+import com.torikun9971.itemprotectionenchantments.interfaces.EnchantableBlock;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
