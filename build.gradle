@@ -137,14 +137,18 @@ idea {
 }
 
 tasks.register ('printGitReleaseTitle') {
+    def title = "${mod_file_name}-${version}"
+
     doLast {
-        println("${mod_file_name}-${version}")
+        println(title)
     }
 }
 
 tasks.register ('printGitTag') {
+    def tagName = "v${mod_version}-mc${minecraft_version}-${mod_loader.toLowerCase()}"
+
     doLast {
-        println("v${mod_version}-mc${minecraft_version}-${mod_loader.toLowerCase()}")
+        println(tagName)
     }
 }
 
