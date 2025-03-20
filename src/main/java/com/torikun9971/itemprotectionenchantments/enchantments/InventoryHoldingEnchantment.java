@@ -4,7 +4,7 @@ import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 
 public class InventoryHoldingEnchantment extends BaseProtectionEnchantment {
     @Override
-    protected ModConfiguration.IBaseProtectionConfig getConfig() {
+    protected ModConfiguration.InventoryHoldingConfig getConfig() {
         return ModConfiguration.getConfig().inventoryHolding;
     }
 }

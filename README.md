@@ -2,10 +2,18 @@
 
 ## Description
 
-This mod adds various enchantments that protect items
+This mod adds various enchantments to protect items.
 
-It requires the [**Cloth Config API**](https://modrinth.com/mod/cloth-config) and is compatible with [Catalogue](https://www.curseforge.com/minecraft/mc-mods/catalogue).  
-For Fabric, it also requires the [**Fabric API**](https://modrinth.com/mod/fabric-api) and is compatible with both [Catalogue](https://www.curseforge.com/minecraft/mc-mods/catalogue) and [Mod Menu](https://modrinth.com/mod/modmenu).
+## Relations
+
+### Required
+- [Cloth Config API](https://modrinth.com/mod/cloth-config)
+- [Fabric API](https://modrinth.com/mod/fabric-api) (Fabric only)
+
+### Optional
+- [Catalogue](https://www.curseforge.com/minecraft/mc-mods/catalogue)
+- [Mod Menu](https://modrinth.com/mod/modmenu) (Fabric only)
+- [Alex's Caves](https://modrinth.com/mod/alexs-caves) (NeoForge/Forge only)
 
 ## Support
 

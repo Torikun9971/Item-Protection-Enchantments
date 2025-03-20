@@ -5,6 +5,7 @@
   "enchantment.protection_enchantments.void_protection_item": "奈落耐性 (アイテム)",
   "enchantment.protection_enchantments.expire_protection_item": "時間耐性 (アイテム)",
   "enchantment.protection_enchantments.inventory_holding": "保持",
+  "enchantment.protection_enchantments.acid_protection_item": "酸耐性 (アイテム)",
 
   "modmenu.descriptionTranslation.protection_enchantments": "アイテムを保護するエンチャントを追加します",
 
@@ -118,6 +119,22 @@
 
   "text.autoconfig.protection_enchantments.option.inventoryHolding.isVanishingCurseDisabled": "消滅の呪いを無効化",
   "text.autoconfig.protection_enchantments.option.inventoryHolding.isVanishingCurseDisabled.@Tooltip": "このエンチャントがついている場合は消滅の呪いを無効化する",
+
+  "text.autoconfig.protection_enchantments.option.acidProtection": "酸耐性 (アイテム)",
+  "text.autoconfig.protection_enchantments.option.acidProtection.enchantableItems": "エンチャント可能なアイテム",
+  "text.autoconfig.protection_enchantments.option.acidProtection.enchantableItems.@Tooltip": "エンチャントを適用できるアイテム\n値: ALL_ITEMS, ITEMS_AND_COMPATIBLE_BLOCKS, ITEMS_ONLY",
+  "text.autoconfig.protection_enchantments.option.acidProtection.minimumCost": "最小経験値レベル",
+  "text.autoconfig.protection_enchantments.option.acidProtection.minimumCost.@Tooltip": "エンチャントテーブルで出すのに必要な最小の経験値レベル",
+  "text.autoconfig.protection_enchantments.option.acidProtection.anvilCost": "コスト",
+  "text.autoconfig.protection_enchantments.option.acidProtection.anvilCost.@Tooltip": "金床で合成する時に必要な経験値レベル",
+  "text.autoconfig.protection_enchantments.option.acidProtection.rarity": "レアリティ",
+  "text.autoconfig.protection_enchantments.option.acidProtection.rarity.@Tooltip": "エンチャントのレアリティ",
+  "text.autoconfig.protection_enchantments.option.acidProtection.weight": "相対確率",
+  "text.autoconfig.protection_enchantments.option.acidProtection.weight.@Tooltip": "エンチャントが出現する相対的な確率",
+  "text.autoconfig.protection_enchantments.option.acidProtection.isTreasure": "トレジャーエンチャント",
+  "text.autoconfig.protection_enchantments.option.acidProtection.isTreasure.@Tooltip": "トレジャーエンチャントにする",
+  "text.autoconfig.protection_enchantments.option.acidProtection.isTradeable": "取引可能",
+  "text.autoconfig.protection_enchantments.option.acidProtection.isTradeable.@Tooltip": "村人などとの取引で手に入る",
 
   "text.autoconfig.protection_enchantments.option.fixMC120158": "MC-120158を修正",
   "text.autoconfig.protection_enchantments.option.fixMC120158.@Tooltip": "HurtEntitiesがtrueに設定された落下ブロックの下に\nアイテムや経験値オーブがあると消えるバグ(MC-120158)を修正する"

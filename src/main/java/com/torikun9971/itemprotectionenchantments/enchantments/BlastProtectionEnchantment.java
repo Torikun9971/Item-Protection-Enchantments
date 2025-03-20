@@ -11,7 +11,7 @@ public class BlastProtectionEnchantment extends BaseProtectionEnchantment {
     }
 
     @Override
-    protected ModConfiguration.IBaseProtectionConfig getConfig() {
+    protected ModConfiguration.BlastProtectionConfig getConfig() {
         return ModConfiguration.getConfig().blastProtection;
     }
 }

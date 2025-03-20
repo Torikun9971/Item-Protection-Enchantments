@@ -1,8 +1,8 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.util.Util;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,9 +28,9 @@ public abstract class PlayerMixin {
             if (!EnchantmentHelper.hasVanishingCurse(itemstack))
                 continue;
 
-            if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()) &&
-                    ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled)
-                continue;
+            if (Util.hasEnchantment(itemstack, ModEnchantments.INVENTORY_HOLDING.get()) &&
+                    ModConfiguration.getConfig().inventoryHolding.isVanishingCurseDisabled
+            ) continue;
 
             player.inventory.removeItemNoUpdate(i);
         }
@@ -44,7 +44,7 @@ public abstract class PlayerMixin {
 
                 if (itemstack.isEmpty()) continue;
 
-                if (ItemProtectionEnchantments.hasEnchantment(itemstack, true, ModEnchantments.INVENTORY_HOLDING.get()))
+                if (Util.hasEnchantment(itemstack, ModEnchantments.INVENTORY_HOLDING.get()))
                     continue;
 
                 inventory.player.drop(itemstack, true, false);

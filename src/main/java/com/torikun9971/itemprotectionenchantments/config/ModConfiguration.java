@@ -8,9 +8,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.BoundedDiscrete;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 @Config(name = ItemProtectionEnchantments.MOD_ID)
@@ -32,6 +30,9 @@ public class ModConfiguration implements ConfigData {
 
     @CollapsibleObject
     public InventoryHoldingConfig inventoryHolding = new InventoryHoldingConfig();
+
+    @CollapsibleObject
+    public AcidProtectionConfig acidProtection = new AcidProtectionConfig();
 
     public interface IBaseProtectionConfig {
         EnchantmentCategories getEnchantableItems();
@@ -305,6 +306,51 @@ public class ModConfiguration implements ConfigData {
 
         @Tooltip
         public boolean isVanishingCurseDisabled = true;
+
+        @Override
+        public EnchantmentCategories getEnchantableItems() {
+            return enchantableItems;
+        }
+
+        @Override
+        public int getMinimumCost() {
+            return minimumCost;
+        }
+
+        @Override
+        public Enchantment.Rarity getRarity() {
+            return rarity;
+        }
+
+        @Override
+        public boolean isTreasure() {
+            return isTreasure;
+        }
+
+        @Override
+        public boolean isTradeable() {
+            return isTradeable;
+        }
+    }
+
+    public static class AcidProtectionConfig implements IBaseProtectionConfig {
+        @Tooltip
+        @EnumHandler
+        public EnchantmentCategories enchantableItems = BaseProtectionEnchantment.CATEGORY;
+
+        @Tooltip
+        @BoundedDiscrete(min = 0, max = BaseProtectionEnchantment.MAX_COST)
+        public int minimumCost = BaseProtectionEnchantment.MIN_COST;
+
+        @Tooltip
+        @EnumHandler
+        public Enchantment.Rarity rarity = BaseProtectionEnchantment.RARITY;
+
+        @Tooltip
+        public boolean isTreasure = false;
+
+        @Tooltip
+        public boolean isTradeable = true;
 
         @Override
         public EnchantmentCategories getEnchantableItems() {
