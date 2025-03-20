@@ -1,9 +1,9 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import com.torikun9971.itemprotectionenchantments.enchantments.VoidProtectionEnchantment.ProtectionHeights;
 import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.util.Util;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -42,7 +42,7 @@ public abstract class EntityMixin {
         if (!((Object) this instanceof ItemEntity itemEntity))
             return;
 
-        if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.VOID_PROTECTION_ITEM.get())) {
+        if (Util.hasEnchantment(itemEntity.getItem(), ModEnchantments.VOID_PROTECTION_ITEM.get())) {
             itemEntity.setNoGravity(true);
             itemEntity.setInvulnerable(true);
             itemEntity.setDeltaMovement(0, 0, 0);

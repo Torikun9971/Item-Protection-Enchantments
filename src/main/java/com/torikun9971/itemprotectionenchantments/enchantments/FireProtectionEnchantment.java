@@ -10,7 +10,7 @@ public class FireProtectionEnchantment extends BaseProtectionEnchantment {
     }
 
     @Override
-    protected ModConfiguration.IBaseProtectionConfig getConfig() {
+    protected ModConfiguration.FireProtectionConfig getConfig() {
         return ModConfiguration.getConfig().fireProtection;
     }
 }

@@ -1,8 +1,8 @@
 package com.torikun9971.itemprotectionenchantments.mixins;
 
-import com.torikun9971.itemprotectionenchantments.ItemProtectionEnchantments;
 import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import com.torikun9971.itemprotectionenchantments.init.ModEnchantments;
+import com.torikun9971.itemprotectionenchantments.util.Util;
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -16,7 +16,7 @@ public abstract class ItemEntityMixin {
         if (!((Object) this instanceof ItemEntity itemEntity))
             return;
 
-        if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.FIRE_PROTECTION_ITEM.get())) {
+        if (Util.hasEnchantment(itemEntity.getItem(), ModEnchantments.FIRE_PROTECTION_ITEM.get())) {
             cir.setReturnValue(true);
         }
     }
@@ -26,7 +26,7 @@ public abstract class ItemEntityMixin {
         if (!((Object) this instanceof ItemEntity itemEntity))
             return;
 
-        if (ItemProtectionEnchantments.hasEnchantment(itemEntity.getItem(), true, ModEnchantments.FIRE_PROTECTION_ITEM.get())) {
+        if (Util.hasEnchantment(itemEntity.getItem(), ModEnchantments.FIRE_PROTECTION_ITEM.get())) {
             if (ModConfiguration.getConfig().fireProtection.isGlow)
                 itemEntity.setGlowingTag(true);
         }

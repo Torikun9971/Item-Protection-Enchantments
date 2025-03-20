@@ -1,0 +1,24 @@
+[versions]
+forgegradle = "[6.0.16,6.2)"
+parchment-forgegradle = "1.+"
+mixin = "0.7.+"
+mixin-processor = "0.8.5"
+curseforgegradle = "1.1.26"
+minotaur = "2.+"
+minecraft = "1.20.1"
+forge = "47.2.0"
+cloth-config = "11.1.136"
+citadel = "6002521"
+alexscaves = "5848216"
+
+[libraries]
+cloth-config = { module = "me.shedaniel.cloth:cloth-config-forge", version.ref = "cloth-config" }
+citadel = { module = "curse.maven:citadel-331936", version.ref = "citadel" }
+alexscaves = { module = "curse.maven:alexs-caves-924854", version.ref = "alexscaves" }
+
+[plugins]
+forgegradle = { id = "net.minecraftforge.gradle", version.ref = "forgegradle" }
+parchmentForgegradle = { id = "org.parchmentmc.librarian.forgegradle", version.ref = "parchment-forgegradle" }
+mixin = { id = "org.spongepowered.mixin", version.ref = "mixin" }
+curseforgegradle = { id = "net.darkhax.curseforgegradle", version.ref = "curseforgegradle" }
+minotaur = { id = "com.modrinth.minotaur", version.ref = "minotaur" }

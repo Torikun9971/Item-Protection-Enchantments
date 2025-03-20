@@ -1,6 +1,6 @@
 package com.torikun9971.itemprotectionenchantments.enchantments;
 
-import com.torikun9971.itemprotectionenchantments.config.ModConfiguration.IBaseProtectionConfig;
+import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -55,7 +55,7 @@ public abstract class BaseProtectionEnchantment extends Enchantment {
         return canEnchant(stack);
     }
 
-    protected abstract IBaseProtectionConfig getConfig();
+    protected abstract ModConfiguration.IBaseProtectionConfig getConfig();
 
     public enum EnchantmentCategories {
         ALL_ITEMS("all_items", (item) -> true),

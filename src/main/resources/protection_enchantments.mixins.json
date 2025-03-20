@@ -11,7 +11,8 @@
     "PlayerMixin",
     "ServerPlayerMixin",
     "ShulkerBoxBlockEntityMixin",
-    "ShulkerBoxBlockMixin"
+    "ShulkerBoxBlockMixin",
+    "alexscaves.AcidBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

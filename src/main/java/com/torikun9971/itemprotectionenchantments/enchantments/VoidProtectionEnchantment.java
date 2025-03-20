@@ -4,7 +4,7 @@ import com.torikun9971.itemprotectionenchantments.config.ModConfiguration;
 
 public class VoidProtectionEnchantment extends BaseProtectionEnchantment {
     @Override
-    protected ModConfiguration.IBaseProtectionConfig getConfig() {
+    protected ModConfiguration.VoidProtectionConfig getConfig() {
         return ModConfiguration.getConfig().voidProtection;
     }
 
