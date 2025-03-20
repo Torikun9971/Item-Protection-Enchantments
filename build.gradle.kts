@@ -183,6 +183,7 @@ if (!System.getenv("CURSEFORGE_TOKEN").isNullOrBlank() && changelogFile.exists()
 
         mainFile.addRequirement("cloth-config")
         mainFile.addOptional("catalogue")
+        mainFile.addOptional("alexs-caves")
     }
 }
 
@@ -202,6 +203,8 @@ if (!System.getenv("MODRINTH_TOKEN").isNullOrBlank() && changelogFile.exists()) 
                 "cloth-config",
                 "${libs.versions.cloth.config.get()}+${modLoader.lowercase()}"
             )
+
+            optional.project("alexs-caves")
         }
     }
 }
