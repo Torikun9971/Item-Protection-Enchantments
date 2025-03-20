@@ -352,6 +352,9 @@ public class ModConfiguration implements ConfigData {
         @Tooltip
         public boolean isTradeable = true;
 
+        @Tooltip
+        public boolean isGlow = false;
+
         @Override
         public EnchantmentCategories getEnchantableItems() {
             return enchantableItems;

@@ -136,6 +136,9 @@
   "text.autoconfig.protection_enchantments.option.acidProtection.isTradeable": "取引可能",
   "text.autoconfig.protection_enchantments.option.acidProtection.isTradeable.@Tooltip": "村人などとの取引で手に入る",
 
+  "text.autoconfig.protection_enchantments.option.acidProtection.isGlow": "発光",
+  "text.autoconfig.protection_enchantments.option.acidProtection.isGlow.@Tooltip": "酸に入ると発光させる",
+
   "text.autoconfig.protection_enchantments.option.fixMC120158": "MC-120158を修正",
   "text.autoconfig.protection_enchantments.option.fixMC120158.@Tooltip": "HurtEntitiesがtrueに設定された落下ブロックの下に\nアイテムや経験値オーブがあると消えるバグ(MC-120158)を修正する"
 }

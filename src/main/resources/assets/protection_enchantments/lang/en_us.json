@@ -136,6 +136,9 @@
   "text.autoconfig.protection_enchantments.option.acidProtection.isTradeable": "Tradeable",
   "text.autoconfig.protection_enchantments.option.acidProtection.isTradeable.@Tooltip": "Can be obtained through trading with villagers, etc.",
 
+  "text.autoconfig.protection_enchantments.option.acidProtection.isGlow": "Glow",
+  "text.autoconfig.protection_enchantments.option.acidProtection.isGlow.@Tooltip": "Glow when entering acid",
+
   "text.autoconfig.protection_enchantments.option.fixMC120158": "Fix MC-120158",
   "text.autoconfig.protection_enchantments.option.fixMC120158.@Tooltip": "Fixes a bug (MC-120158) where items and experience orbs disappear\nwhen they are under a falling block with HurtEntities set to true"
 }
